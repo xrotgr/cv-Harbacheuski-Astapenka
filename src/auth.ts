@@ -1,4 +1,5 @@
 import NextAuth from 'next-auth';
+import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
 type GraphQLLoginResponse = {
@@ -15,7 +16,7 @@ type GraphQLLoginResponse = {
   errors?: Array<{ message: string }>;
 };
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   providers: [
     Credentials({
@@ -85,4 +86,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
