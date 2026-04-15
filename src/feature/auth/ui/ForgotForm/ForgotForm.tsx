@@ -14,7 +14,6 @@ export const ForgotForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const t = useTranslations('auth');
 
   const handleSubmit = async (values: ForgotPasswordFormValues) => {
