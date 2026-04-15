@@ -1,5 +1,19 @@
 {
   "HomePage": {
     "title": "Здарова, мир!"
+  },
+  "auth": {
+    "login": "ВОЙТИ",
+    "signup": "РЕГИСТРАЦИЯ",
+    "welcomeBack": "С возвращением",
+    "loginSubtitle": "С возвращением! Войдите, чтобы продолжить",
+    "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "showPassword": "Показать пароль",
+    "hidePassword": "Скрыть пароль",
+    "authorizationFailed": "Ошибка авторизации. Проверьте email и пароль.",
+    "languageLabel": "Язык",
+    "openSettings": "Открыть настройки авторизации"
   }
 }

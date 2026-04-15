@@ -1,5 +1,19 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "auth": {
+    "login": "LOG IN",
+    "signup": "SIGN UP",
+    "welcomeBack": "Welcome back",
+    "loginSubtitle": "Hello again! Log in to continue",
+    "forgotPassword": "FORGOT PASSWORD",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "authorizationFailed": "Authorization failed. Check your email and password.",
+    "languageLabel": "Language",
+    "openSettings": "Open auth settings"
   }
 }
