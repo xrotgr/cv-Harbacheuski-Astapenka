@@ -9,7 +9,7 @@
     "loginSubtitle": "С возвращением! Войдите, чтобы продолжить",
     "registerNow": "Зарегистрируемся сейчас",
     "registerSubtitle": "Добро подаловать! Зарегистрируйтесь для продолжения",
-    "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ",
+    "forgotPassword": "Забыли пароль",
     "haveAccount": "У МЕНЯ ЕСТЬ АККАУНТ",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Пароль",
@@ -18,5 +18,8 @@
     "authorizationFailed": "Ошибка авторизации. Проверьте email и пароль.",
     "languageLabel": "Язык",
     "openSettings": "Открыть настройки авторизации"
+  },
+  "common": {
+    "cancel": "ОТМЕНА"
   }
 }

@@ -1,30 +1,26 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
-import { LoginForm } from '@/feature/auth/ui/LoginForm/LoginForm';
+import { ForgotForm } from '@/feature/auth';
 import { authPagesStyles } from '@/shared/styles';
+import { ClientLink } from '@/shared/ui';
 
-import { ClientLink } from '../../shared/ui/ClientLink';
-
-export function LoginPage() {
+export function ForgotPasswordPage() {
   const t = useTranslations('auth');
+  const c = useTranslations('common');
 
   return (
     <Box sx={authPagesStyles.wrapper}>
       <Box sx={authPagesStyles.contentBox}>
         <Typography variant="h4" sx={authPagesStyles.pageHeader}>
-          {t('welcomeBack')}
+          {t('forgotPassword')}
         </Typography>
 
         <Typography sx={authPagesStyles.helloText}>{t('loginSubtitle')}</Typography>
 
-        <LoginForm />
+        <ForgotForm />
 
-        <ClientLink
-          label={t('forgotPassword').toUpperCase()}
-          href="/forgot-password"
-          sx={authPagesStyles.forgotPassword}
-        />
+        <ClientLink label={c('cancel')} href="/auth/login" sx={authPagesStyles.forgotPassword} />
       </Box>
     </Box>
   );

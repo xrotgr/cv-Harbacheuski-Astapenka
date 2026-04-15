@@ -9,7 +9,7 @@
     "registerNow": "Register now",
     "registerSubtitle": "Welcome! Sign up to continue",
     "loginSubtitle": "Hello again! Log in to continue",
-    "forgotPassword": "FORGOT PASSWORD",
+    "forgotPassword": "Forgot password",
     "haveAccount": "I HAVE AN ACCOUNT",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
@@ -18,5 +18,8 @@
     "authorizationFailed": "Authorization failed. Check your email and password.",
     "languageLabel": "Language",
     "openSettings": "Open auth settings"
+  },
+  "common": {
+    "cancel": "CANCEL"
   }
 }

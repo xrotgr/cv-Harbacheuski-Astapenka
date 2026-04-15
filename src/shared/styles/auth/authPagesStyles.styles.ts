@@ -1,4 +1,4 @@
-export const styles = {
+export const authPagesStyles = {
   wrapper: {
     minHeight: '80vh',
     display: 'flex',
