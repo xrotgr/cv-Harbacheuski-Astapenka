@@ -1,27 +1,27 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
-import { LoginForm } from '@/feature/auth/ui/LoginForm/LoginForm';
+import { RegisterForm } from '@/feature/auth';
 
 import { ClientLink } from '../../shared/ui/ClientLink';
 
-import { styles } from './LoginPage.styles';
+import { styles } from './SignupPage.styles';
 
-export function LoginPage() {
+export function SignupPage() {
   const t = useTranslations('auth');
 
   return (
     <Box sx={styles.wrapper}>
       <Box sx={styles.contentBox}>
         <Typography variant="h4" sx={styles.pageHeader}>
-          {t('welcomeBack')}
+          {t('registerNow')}
         </Typography>
 
-        <Typography sx={styles.helloText}>{t('loginSubtitle')}</Typography>
+        <Typography sx={styles.helloText}>{t('registerSubtitle')}</Typography>
 
-        <LoginForm />
+        <RegisterForm />
 
-        <ClientLink label={t('forgotPassword')} href="/auth/signup" sx={styles.forgotPassword} />
+        <ClientLink label={t('haveAccount')} href="/auth/login" sx={styles.forgotPassword} />
       </Box>
     </Box>
   );

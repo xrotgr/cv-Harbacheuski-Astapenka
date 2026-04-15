@@ -7,8 +7,9 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { SignInFormSchema, type AuthFormValues } from '@/feature/auth/model/schema';
-import { styles } from '@/pages/LoginPage/LoginPage.styles';
 import { FormHOC, FormTextField } from '@/shared/ui/form';
+
+import { styles } from './AuthForm.styles';
 
 interface LoginProps {
   handleSubmit: (values: AuthFormValues) => void | Promise<void>;
