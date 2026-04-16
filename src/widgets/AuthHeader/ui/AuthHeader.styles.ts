@@ -36,12 +36,12 @@ export const styles = {
     transition: 'color .2s ease',
 
     '&:hover': {
-      color: '#ea2f2f',
+      color: 'primary.main',
     },
   },
 
   activeNavItem: {
-    color: '#ea2f2f',
+    color: 'primary.main',
 
     '&::after': {
       content: '""',
@@ -50,7 +50,7 @@ export const styles = {
       bottom: 0,
       width: '100%',
       height: '2px',
-      backgroundColor: '#ea2f2f',
+      backgroundColor: 'primary.main',
     },
   },
 };

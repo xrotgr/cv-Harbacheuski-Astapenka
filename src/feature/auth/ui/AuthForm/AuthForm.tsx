@@ -6,19 +6,18 @@ import { Button, IconButton, InputAdornment, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { SignInFormSchema, type AuthFormValues } from '@/feature/auth/model/schema';
-import { FormHOC, FormTextField } from '@/shared/ui/form';
+import { SignInFormSchema, useAuthSubmit, type AuthFormValues } from '@/feature/auth';
+import { FormHOC, FormTextField } from '@/shared/ui';
 
 import { styles } from './AuthForm.styles';
 
 interface LoginProps {
-  handleSubmit: (values: AuthFormValues) => void | Promise<void>;
-  isSubmitting?: boolean;
-  submitError?: string | null;
+  formType: 'login' | 'register';
 }
 
-export const AuthForm = ({ handleSubmit, isSubmitting = false, submitError }: LoginProps) => {
+export const AuthForm = ({ formType }: LoginProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { handleSubmit, isSubmitting, submitError } = useAuthSubmit(formType);
   const t = useTranslations('auth');
 
   const handleTogglePassword = () => {

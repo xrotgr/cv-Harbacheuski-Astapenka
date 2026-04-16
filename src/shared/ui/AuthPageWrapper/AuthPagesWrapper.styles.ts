@@ -1,4 +1,4 @@
-export const authPagesStyles = {
+export const styles = {
   wrapper: {
     minHeight: '80vh',
     display: 'flex',
@@ -25,12 +25,12 @@ export const authPagesStyles = {
   helloText: {
     mb: 4,
     fontSize: 14,
-    color: '#d6d6d6',
     textAlign: 'center',
   },
   forgotPassword: {
     color: '#777',
     fontSize: 12,
+    fontWeight: 750,
     mt: 2.5,
     width: '100%',
     textAlign: 'center',
@@ -38,5 +38,8 @@ export const authPagesStyles = {
     background: 'transparent',
     p: 0,
     cursor: 'pointer',
+    '&:focus': {
+      transform: 'scale(1.1)',
+    },
   },
 };

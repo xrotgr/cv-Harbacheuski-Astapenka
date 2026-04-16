@@ -12,7 +12,7 @@ interface ForgotPasswordActionProps {
 
 export const ClientLink = ({ label, href, sx }: ForgotPasswordActionProps) => {
   return (
-    <MuiLink component={Link} href={href} sx={sx}>
+    <MuiLink component={Link} href={href} sx={sx} underline="none">
       {label}
     </MuiLink>
   );

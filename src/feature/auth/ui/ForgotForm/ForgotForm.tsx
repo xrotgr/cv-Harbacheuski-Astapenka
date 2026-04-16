@@ -3,22 +3,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
-import { ForgotPasswordFormSchema, ForgotPasswordFormValues } from '@/feature/auth/model/schema';
+import { ForgotPasswordFormSchema, ForgotPasswordFormValues, useAuthSubmit } from '@/feature/auth';
 import { FormHOC, FormTextField } from '@/shared/ui';
 
 import { styles } from './ForgotForm.styles';
 
 export const ForgotForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const { handleSubmit, isSubmitting, submitError } = useAuthSubmit('forgot');
 
   const t = useTranslations('auth');
-
-  const handleSubmit = async (values: ForgotPasswordFormValues) => {
-    //TODO: add submiting logic
-  };
 
   return (
     <FormHOC<ForgotPasswordFormValues>
