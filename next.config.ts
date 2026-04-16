@@ -2,7 +2,9 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    GRAPHQL_URL: process.env.GRAPHQL_URL,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

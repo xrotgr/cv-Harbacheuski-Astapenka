@@ -63,11 +63,11 @@ export const AuthForm = ({ formType }: LoginProps) => {
         }}
       />
       <Button type="submit" variant="contained" sx={styles.submitButton} disabled={isSubmitting}>
-        {t('login')}
+        {formType === 'login' ? t('login') : t('signup')}
       </Button>
       {submitError ? (
         <Typography color="error" variant="caption" sx={{ textAlign: 'center' }}>
-          {submitError}
+          {t(submitError)}
         </Typography>
       ) : null}
     </FormHOC>

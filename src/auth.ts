@@ -1,17 +1,16 @@
+import { print } from 'graphql';
 import NextAuth from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
+import { LOGIN } from '@/feature/auth/api/documents';
+import { GRAPHQL_URL } from '@/shared/config/env';
+
+import { AuthInput, AuthResult } from './types/cv-graphql';
+
 type GraphQLLoginResponse = {
   data?: {
-    login?: {
-      accessToken?: string;
-      user?: {
-        id: string;
-        email?: string;
-        name?: string;
-      };
-    };
+    login?: AuthResult;
   };
   errors?: Array<{ message: string }>;
 };
@@ -22,12 +21,20 @@ export const authOptions: NextAuthOptions = {
     Credentials({
       name: 'GraphQL',
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        auth: { label: 'Auth', type: 'text' },
       },
       async authorize(credentials) {
-        const graphqlEndpoint = process.env.GRAPHQL_ENDPOINT;
-        if (!graphqlEndpoint || !credentials?.email || !credentials?.password) {
+        const graphqlEndpoint = GRAPHQL_URL;
+        const authPayload = credentials?.auth;
+
+        if (!graphqlEndpoint || !authPayload) {
+          return null;
+        }
+
+        let auth: AuthInput;
+        try {
+          auth = JSON.parse(authPayload) as AuthInput;
+        } catch {
           return null;
         }
 
@@ -35,21 +42,9 @@ export const authOptions: NextAuthOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            query: `
-              mutation Login($email: String!, $password: String!) {
-                login(email: $email, password: $password) {
-                  accessToken
-                  user {
-                    id
-                    email
-                    name
-                  }
-                }
-              }
-            `,
+            query: print(LOGIN),
             variables: {
-              email: credentials.email,
-              password: credentials.password,
+              auth,
             },
           }),
         });
@@ -67,8 +62,7 @@ export const authOptions: NextAuthOptions = {
         return {
           id: loginResult.user.id,
           email: loginResult.user.email,
-          name: loginResult.user.name,
-          accessToken: loginResult.accessToken,
+          accessToken: loginResult.access_token,
         };
       },
     }),
