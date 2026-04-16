@@ -33,13 +33,13 @@ export const AuthForm = ({ formType }: LoginProps) => {
     >
       <FormTextField<AuthFormValues>
         name="email"
-        placeholder={t('emailPlaceholder')}
+        label={t('emailPlaceholder')}
         variant="outlined"
         sx={styles.field}
       />
       <FormTextField<AuthFormValues>
         name="password"
-        placeholder={t('passwordPlaceholder')}
+        label={t('passwordPlaceholder')}
         type={isPasswordVisible ? 'text' : 'password'}
         variant="outlined"
         sx={styles.field}
