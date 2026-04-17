@@ -1,8 +1,5 @@
-'use client';
-
 import { useLazyQuery } from '@apollo/client/react';
-
-import { AuthInput, AuthResult } from '@/types/cv-graphql';
+import { AuthInput, AuthResult } from 'cv-graphql';
 
 import { LOGIN } from './documents';
 

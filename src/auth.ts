@@ -1,12 +1,10 @@
+import { AuthInput, AuthResult } from 'cv-graphql';
 import { print } from 'graphql';
 import NextAuth from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
 import { LOGIN } from '@/feature/auth/api/documents';
-import { GRAPHQL_URL } from '@/shared/config/env';
-
-import { AuthInput, AuthResult } from './types/cv-graphql';
 
 type GraphQLLoginResponse = {
   data?: {
@@ -24,7 +22,7 @@ export const authOptions: NextAuthOptions = {
         auth: { label: 'Auth', type: 'text' },
       },
       async authorize(credentials) {
-        const graphqlEndpoint = GRAPHQL_URL;
+        const graphqlEndpoint = process.env.NEXT_PUBLIC_GRAPHQL_URL;
         const authPayload = credentials?.auth;
 
         if (!graphqlEndpoint || !authPayload) {

@@ -9,7 +9,7 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: process.env.GRAPHQL_URL,
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
   });
 
   return new ApolloClient({

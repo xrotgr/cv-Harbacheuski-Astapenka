@@ -28,6 +28,7 @@
     "@mui/icons-material": "^9.0.0",
     "@mui/material": "^9.0.0",
     "@mui/material-nextjs": "^9.0.0",
+    "cv-graphql": "^2.13.2",
     "graphql": "^16.13.2",
     "next": "16.2.3",
     "next-auth": "^4.24.13",
