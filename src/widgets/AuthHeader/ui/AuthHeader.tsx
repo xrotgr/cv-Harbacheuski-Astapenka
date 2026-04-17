@@ -1,6 +1,6 @@
 'use client';
 
-import { AppBar, Toolbar, Box, Link } from '@mui/material';
+import { AppBar, Toolbar, Tabs, Tab } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
 import { Link as I18nLink, usePathname } from '@/i18n/navigation';
@@ -18,26 +18,17 @@ export const Header = () => {
   return (
     <AppBar position="static" color="inherit" sx={styles.appBar}>
       <Toolbar sx={styles.toolbar}>
-        <Box sx={styles.nav}>
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-
-            return (
-              <Link
-                key={item.href}
-                component={I18nLink}
-                sx={{
-                  ...styles.navItem,
-                  ...(isActive ? styles.activeNavItem : {}),
-                }}
-                href={item.href}
-                underline="none"
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </Box>
+        <Tabs value={pathname}>
+          {navItems.map((item) => (
+            <Tab
+              key={item.href}
+              label={item.label}
+              value={item.href}
+              component={I18nLink}
+              href={item.href}
+            />
+          ))}
+        </Tabs>
       </Toolbar>
     </AppBar>
   );

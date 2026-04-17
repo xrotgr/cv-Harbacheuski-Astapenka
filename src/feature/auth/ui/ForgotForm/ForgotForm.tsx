@@ -23,7 +23,7 @@ export const ForgotForm = () => {
     >
       <FormTextField<ForgotPasswordFormValues>
         name="email"
-        placeholder={t('emailPlaceholder')}
+        label={t('emailPlaceholder')}
         variant="outlined"
         sx={styles.field}
       />

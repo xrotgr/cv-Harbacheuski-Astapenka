@@ -17,6 +17,7 @@
     "showPassword": "Показать пароль",
     "hidePassword": "Скрыть пароль",
     "authorizationFailed": "Ошибка авторизации. Проверьте email и пароль.",
+    "userExist": "Пользователь существует",
     "languageLabel": "Язык",
     "openSettings": "Открыть настройки авторизации"
   },

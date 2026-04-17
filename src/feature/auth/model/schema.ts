@@ -19,4 +19,3 @@ export const ForgotPasswordFormSchema = z.object({
 
 export type ForgotPasswordFormValues = z.infer<typeof ForgotPasswordFormSchema>;
 export type AuthFormValues = z.infer<typeof SignInFormSchema>;
-export type FormValues = AuthFormValues;
