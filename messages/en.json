@@ -17,6 +17,7 @@
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "authorizationFailed": "Authorization failed. Check your email and password.",
+    "userExist": "The user exists",
     "languageLabel": "Language",
     "openSettings": "Open auth settings"
   },

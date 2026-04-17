@@ -11,6 +11,36 @@ import type { AuthFormValues, ForgotPasswordFormValues } from './schema';
 
 type AuthType = 'login' | 'register' | 'forgot';
 
+type GraphQLErrorLike = {
+  message?: string;
+};
+
+type GraphQLResponseErrorLike = {
+  graphQLErrors?: GraphQLErrorLike[];
+  errors?: GraphQLErrorLike[];
+};
+
+const getApiErrorMessage = (error: unknown): string | null => {
+  if (error && typeof error === 'object') {
+    const responseError = error as GraphQLResponseErrorLike;
+    const graphQLErrorMessage = responseError.graphQLErrors?.[0]?.message;
+    if (graphQLErrorMessage) {
+      return graphQLErrorMessage;
+    }
+
+    const responseErrorMessage = responseError.errors?.[0]?.message;
+    if (responseErrorMessage) {
+      return responseErrorMessage;
+    }
+  }
+
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+
+  return null;
+};
+
 export const useAuthSubmit = (type: AuthType) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -55,7 +85,7 @@ export const useAuthSubmit = (type: AuthType) => {
           });
 
           if (!signupResult.data?.signup?.user) {
-            setSubmitError('authorizationFailed');
+            setSubmitError('userExist');
             return;
           }
 
@@ -83,16 +113,20 @@ export const useAuthSubmit = (type: AuthType) => {
         default:
           throw new Error('unknownType');
       }
-    } catch {
-      setSubmitError('authorizationFailed');
+    } catch (error) {
+      const apiErrorMessage = getApiErrorMessage(error);
+      setSubmitError(apiErrorMessage ?? 'authorizationFailed');
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const clearError = () => setSubmitError(null);
+
   return {
     handleSubmit,
     isSubmitting,
     submitError,
+    clearError,
   };
 };

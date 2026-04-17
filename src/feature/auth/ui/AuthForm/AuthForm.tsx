@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button, IconButton, InputAdornment, Typography } from '@mui/material';
+import { Alert, Button, IconButton, InputAdornment, Snackbar, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -17,11 +17,20 @@ interface LoginProps {
 
 export const AuthForm = ({ formType }: LoginProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const { handleSubmit, isSubmitting, submitError } = useAuthSubmit(formType);
+  const { handleSubmit, isSubmitting, submitError, clearError } = useAuthSubmit(formType);
   const t = useTranslations('auth');
+
+  const isSnackbarOpen = Boolean(submitError);
+  const errorMessage = submitError && (t.has(submitError) ? t(submitError) : submitError);
 
   const handleTogglePassword = () => {
     setIsPasswordVisible((prev) => !prev);
+  };
+
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') return;
+
+    clearError();
   };
 
   return (
@@ -65,11 +74,17 @@ export const AuthForm = ({ formType }: LoginProps) => {
       <Button type="submit" variant="contained" sx={styles.submitButton} disabled={isSubmitting}>
         {formType === 'login' ? t('login') : t('signup')}
       </Button>
-      {submitError ? (
-        <Typography color="error" variant="caption" sx={{ textAlign: 'center' }}>
-          {t(submitError)}
-        </Typography>
-      ) : null}
+
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert severity="error" onClose={handleClose}>
+          {errorMessage}
+        </Alert>
+      </Snackbar>
     </FormHOC>
   );
 };
