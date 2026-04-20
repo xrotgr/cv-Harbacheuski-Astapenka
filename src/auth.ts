@@ -1,17 +1,10 @@
-import { AuthInput, AuthResult } from 'cv-graphql';
-import { print } from 'graphql';
+import { AuthInput } from 'cv-graphql';
 import NextAuth from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
-import { LOGIN } from '@/feature/auth/api/documents';
-
-type GraphQLLoginResponse = {
-  data?: {
-    login?: AuthResult;
-  };
-  errors?: Array<{ message: string }>;
-};
+import { loginWithCredentials } from '@/feature/auth/api/serverAuth';
+import { ACCESS_TOKEN_TTL_MS, refreshAccessToken } from '@/feature/auth/model/token';
 
 export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
@@ -22,10 +15,9 @@ export const authOptions: NextAuthOptions = {
         auth: { label: 'Auth', type: 'text' },
       },
       async authorize(credentials) {
-        const graphqlEndpoint = process.env.NEXT_PUBLIC_GRAPHQL_URL;
         const authPayload = credentials?.auth;
 
-        if (!graphqlEndpoint || !authPayload) {
+        if (!authPayload) {
           return null;
         }
 
@@ -36,23 +28,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const response = await fetch(graphqlEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            query: print(LOGIN),
-            variables: {
-              auth,
-            },
-          }),
-        });
-
-        if (!response.ok) {
-          return null;
-        }
-
-        const result = (await response.json()) as GraphQLLoginResponse;
-        const loginResult = result.data?.login;
+        const loginResult = await loginWithCredentials(auth);
         if (!loginResult?.user) {
           return null;
         }
@@ -61,6 +37,7 @@ export const authOptions: NextAuthOptions = {
           id: loginResult.user.id,
           email: loginResult.user.email,
           accessToken: loginResult.access_token,
+          refreshToken: loginResult.refresh_token,
         };
       },
     }),
@@ -69,12 +46,22 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user && 'accessToken' in user) {
         token.accessToken = user.accessToken as string | undefined;
+        token.refreshToken = (
+          'refreshToken' in user ? (user.refreshToken as string | undefined) : undefined
+        ) as string | undefined;
+        token.accessTokenExpires = Date.now() + ACCESS_TOKEN_TTL_MS;
+        token.error = undefined;
       }
 
-      return token;
+      if (token.accessToken && token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
+        return token;
+      }
+
+      return refreshAccessToken(token);
     },
     async session({ session, token }) {
       session.accessToken = token.accessToken as string | undefined;
+      session.error = token.error as string | undefined;
       return session;
     },
   },

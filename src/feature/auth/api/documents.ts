@@ -8,6 +8,7 @@ export const LOGIN = gql`
         email
       }
       access_token
+      refresh_token
     }
   }
 `;
@@ -20,6 +21,16 @@ export const SIGNUP = gql`
         email
       }
       access_token
+      refresh_token
+    }
+  }
+`;
+
+export const UPDATE_TOKEN = gql`
+  mutation UpdateToken {
+    updateToken {
+      access_token
+      refresh_token
     }
   }
 `;
