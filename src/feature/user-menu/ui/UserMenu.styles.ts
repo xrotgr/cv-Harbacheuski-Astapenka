@@ -11,7 +11,7 @@ export const styles = {
     py: 0.75,
     width: '100%',
     '&:hover': {
-      backgroundColor: '#f2f2f2',
+      backgroundColor: 'action.hover',
     },
   },
   footerAvatar: {
@@ -25,17 +25,19 @@ export const styles = {
   menuPaper: {
     minWidth: 220,
     borderRadius: 2,
-    boxShadow: '0px 8px 24px rgba(0,0,0,0.12)',
-    border: '1px solid #e5e5e5',
+    boxShadow: (theme: { shadows: string[] }) => theme.shadows[8],
+    border: '1px solid',
+    borderColor: 'divider',
+    backgroundColor: 'background.paper',
     mt: 1,
   },
   menuItem: {
     py: 1.2,
     px: 1.5,
     gap: 1.25,
-    color: '#2f2f2f',
+    color: 'text.primary',
     '&:hover': {
-      backgroundColor: '#f0f0f0',
+      backgroundColor: 'action.hover',
     },
   },
   logoutDivider: {

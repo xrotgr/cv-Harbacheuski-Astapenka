@@ -3,7 +3,7 @@ export const styles = {
     m: 0,
     py: { xs: '8px', md: '16px' },
     px: mobile ? 0.5 : 2,
-    borderRadius: '0 200px 200px 0',
+    borderRadius: { xs: '200px', md: '0 200px 200px 0' },
     minHeight: mobile ? 56 : 44,
     minWidth: { xs: 56, sm: 'auto', md: '100%' },
     display: 'flex',
