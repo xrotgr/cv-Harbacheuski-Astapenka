@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Box, IconButton, List } from '@mui/material';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { UserMenu } from '@/feature/user-menu/ui/UserMenu';
@@ -17,6 +18,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ email, userId }: SidebarProps) => {
+  const t = useTranslations('sidebar');
   const { selectedPath, items } = useNavigation();
   const [open, setOpen] = useState(true);
 
@@ -27,6 +29,7 @@ export const Sidebar = ({ email, userId }: SidebarProps) => {
           <SidebarItem
             key={item.path}
             {...item}
+            label={t(item.labelKey)}
             open={open}
             selected={selectedPath === item.path}
           />

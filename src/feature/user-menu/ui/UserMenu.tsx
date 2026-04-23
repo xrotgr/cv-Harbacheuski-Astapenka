@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import { signOut } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { Link } from '@/i18n/navigation';
@@ -25,6 +26,7 @@ interface UserMenuProps {
 }
 
 export const UserMenu = ({ email, userId, open }: UserMenuProps) => {
+  const t = useTranslations('sidebar');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
   const profileHref = `/users/${userId}/profile`;
@@ -67,7 +69,7 @@ export const UserMenu = ({ email, userId, open }: UserMenuProps) => {
           <ListItemIcon>
             <PersonOutlineRounded fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Profile" />
+          <ListItemText primary={t('profile')} />
         </MenuItem>
         <MenuItem
           component={Link}
@@ -79,14 +81,14 @@ export const UserMenu = ({ email, userId, open }: UserMenuProps) => {
           <ListItemIcon>
             <SettingsOutlined fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Settings" />
+          <ListItemText primary={t('settings')} />
         </MenuItem>
         <Divider sx={styles.logoutDivider} />
         <MenuItem onClick={handleLogout} sx={styles.menuItem}>
           <ListItemIcon>
             <LogoutRounded fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Logout" />
+          <ListItemText primary={t('logout')} />
         </MenuItem>
       </Menu>
     </>

@@ -21,6 +21,15 @@
     "languageLabel": "Language",
     "openSettings": "Open auth settings"
   },
+  "sidebar": {
+    "employees": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cv": "CVs",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "common": {
     "cancel": "CANCEL"
   }
