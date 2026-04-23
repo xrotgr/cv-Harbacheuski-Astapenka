@@ -2,12 +2,14 @@
 
 import { gql, TypedDocumentNode } from '@apollo/client';
 import { useQuery } from '@apollo/client/react';
-import { Avatar, Box, CircularProgress } from '@mui/material';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Avatar, Box, CircularProgress, IconButton } from '@mui/material';
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { User } from 'cv-graphql';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
+import { Link } from '@/i18n/navigation';
 import SearchBar from '@/shared/ui/search/SearchBar';
 import Table from '@/shared/ui/table/Table';
 
@@ -60,6 +62,17 @@ export default function UsersPage() {
       { field: 'email', headerName: t('email'), minWidth: 300, flex: 1 },
       { field: 'department_name', headerName: t('department'), minWidth: 100, flex: 1 },
       { field: 'position_name', headerName: t('position'), minWidth: 200, flex: 1 },
+      {
+        field: 'link',
+        headerName: '',
+        width: 100,
+        renderCell: (params: GridRenderCellParams) => (
+          <IconButton component={Link} href={`users/${params.row.id}`}>
+            <KeyboardArrowRightIcon />
+          </IconButton>
+        ),
+        flex: 0,
+      },
     ],
     [t]
   );
