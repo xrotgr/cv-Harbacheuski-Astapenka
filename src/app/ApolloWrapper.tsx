@@ -16,6 +16,7 @@ function makeClient() {
 
   const authLink = setContext(async (_, { headers }) => {
     const session = await getSession();
+    console.log('session', session);
     const token = session?.accessToken;
     return {
       headers: {
