@@ -1,7 +1,7 @@
 export const styles = {
   item: (mobile: boolean, selected: boolean) => ({
-    mx: { xs: 0.25, md: 0 },
-    my: { xs: 0, md: 0 },
+    m: 0,
+    py: { xs: '8px', md: '16px' },
     px: mobile ? 0.5 : 2,
     borderRadius: '0 200px 200px 0',
     minHeight: mobile ? 56 : 44,
@@ -17,7 +17,6 @@ export const styles = {
       m: 0,
     },
     '& .MuiListItemText-primary': {
-      fontSize: mobile ? 11 : 14,
       lineHeight: mobile ? '14px' : '20px',
       whiteSpace: 'nowrap',
     },

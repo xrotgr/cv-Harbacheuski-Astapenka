@@ -1,15 +1,22 @@
 'use client';
 
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import { Avatar, Box, IconButton, List, Typography } from '@mui/material';
+import { Box, IconButton, List } from '@mui/material';
 import { useState } from 'react';
+
+import { UserMenu } from '@/feature/user-menu/ui/UserMenu';
 
 import { useNavigation } from '../model';
 
 import { styles } from './Sidebar.styles';
 import { SidebarItem } from './SidebarItem/SidebarItem';
 
-export const Sidebar = () => {
+interface SidebarProps {
+  email: string;
+  userId: string;
+}
+
+export const Sidebar = ({ email, userId }: SidebarProps) => {
   const { selectedPath, items } = useNavigation();
   const [open, setOpen] = useState(true);
 
@@ -27,14 +34,7 @@ export const Sidebar = () => {
       </List>
 
       <Box sx={styles.footer}>
-        <Box sx={styles.footerUser}>
-          <Avatar sx={styles.footerAvatar}>R</Avatar>
-          {open && (
-            <Typography variant="body2" sx={styles.avatarTypography}>
-              Rostislav@tlaben
-            </Typography>
-          )}
-        </Box>
+        <UserMenu email={email} userId={userId} open={open} />
 
         <IconButton onClick={() => setOpen((prev) => !prev)} sx={styles.toggleButton}>
           {open ? <ChevronLeft /> : <ChevronRight />}

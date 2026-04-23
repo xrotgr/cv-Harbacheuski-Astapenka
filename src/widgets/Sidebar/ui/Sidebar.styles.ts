@@ -16,6 +16,7 @@ export const styles = {
     right: { xs: 0, md: 'auto' },
     bottom: { xs: 0, md: 'auto' },
     zIndex: 1200,
+    fontSize: '16px',
   }),
   list: {
     display: 'flex',
@@ -25,6 +26,7 @@ export const styles = {
     width: '100%',
     px: { xs: 0, md: 0 },
     py: { xs: 0.3, md: 1 },
+    mt: { xs: 0, md: '44px' },
   },
   mobileUserButton: {
     flex: 1,
