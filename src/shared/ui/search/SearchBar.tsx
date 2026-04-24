@@ -2,6 +2,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
+import { useTranslations } from 'next-intl';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -45,14 +46,17 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ value, onChange }: SearchBarProps) {
+  const t = useTranslations('common');
+  const search = t('search');
+
   return (
     <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search"
-        inputProps={{ 'aria-label': 'search' }}
+        placeholder={search}
+        inputProps={{ 'aria-label': search }}
         value={value}
         onChange={onChange}
       />

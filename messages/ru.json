@@ -22,7 +22,8 @@
     "openSettings": "Открыть настройки авторизации"
   },
   "common": {
-    "cancel": "ОТМЕНА"
+    "cancel": "ОТМЕНА",
+    "search": "Поиск"
   },
   "UsersTable": {
     "firstName": "Имя",
