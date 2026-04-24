@@ -23,5 +23,16 @@
   },
   "common": {
     "cancel": "ОТМЕНА"
+  },
+  "profile": {
+    "avatar": {
+      "uploadButton": "Загрузить аватар",
+      "uploadHint": "png, jpg или gif не больше 0.5MB",
+      "errors": {
+        "unsupportedFormat": "Разрешены только png, jpg, gif",
+        "fileTooLarge": "Размер файла должен быть <= 0.5MB",
+        "uploadFailed": "Не удалось загрузить аватар"
+      }
+    }
   }
 }
