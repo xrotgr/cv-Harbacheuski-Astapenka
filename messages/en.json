@@ -22,6 +22,14 @@
     "openSettings": "Open auth settings"
   },
   "common": {
-    "cancel": "CANCEL"
+    "cancel": "CANCEL",
+    "search": "Search"
+  },
+  "UsersTable": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position"
   }
 }
