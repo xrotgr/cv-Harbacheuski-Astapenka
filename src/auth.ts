@@ -60,6 +60,10 @@ export const authOptions: NextAuthOptions = {
       return refreshAccessToken(token);
     },
     async session({ session, token }) {
+      session.user = {
+        ...session.user,
+        id: token.sub ?? '',
+      };
       session.accessToken = token.accessToken as string | undefined;
       session.error = token.error as string | undefined;
       return session;

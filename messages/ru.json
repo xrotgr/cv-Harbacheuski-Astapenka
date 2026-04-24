@@ -21,6 +21,15 @@
     "languageLabel": "Язык",
     "openSettings": "Открыть настройки авторизации"
   },
+  "sidebar": {
+    "employees": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cv": "Резюме",
+    "profile": "Профиль",
+    "settings": "Настройки",
+    "logout": "Выйти"
+  },
   "common": {
     "cancel": "ОТМЕНА",
     "search": "Поиск"

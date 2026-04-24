@@ -17,7 +17,6 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   const authLink = setContext(async (_, { headers }) => {
     const session = await getServerSession(authOptions);
     const token = session?.accessToken;
-    console.log('session accessToken:', session?.accessToken);
     return {
       headers: {
         ...headers,
