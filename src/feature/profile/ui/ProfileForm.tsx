@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 
 import { FormHOC, FormSelect, FormTextField } from '@/shared/ui';
 
-import { DEPARTMENTS, POSITIONS } from '../module';
 import { ProfileFormValues, ProfileSchema } from '../module/schema';
 
 import { AvatarBox } from './AvatarBox/AvatarBox';
@@ -16,9 +15,11 @@ import { styles } from './ProfileForm.styles';
 interface ProfileFormProps {
   user: User;
   canEdit: boolean;
+  departments: string[];
+  positions: string[];
 }
 
-export const ProfileForm = ({ user, canEdit }: ProfileFormProps) => {
+export const ProfileForm = ({ user, canEdit, departments, positions }: ProfileFormProps) => {
   const t = useTranslations('common');
 
   const defaultValues: ProfileFormValues = {
@@ -63,7 +64,7 @@ export const ProfileForm = ({ user, canEdit }: ProfileFormProps) => {
           <FormSelect
             name="department"
             label="Department"
-            options={DEPARTMENTS.map((item) => ({
+            options={departments.map((item) => ({
               label: item,
               value: item,
             }))}
@@ -73,7 +74,7 @@ export const ProfileForm = ({ user, canEdit }: ProfileFormProps) => {
           <FormSelect
             name="position"
             label="Position"
-            options={POSITIONS.map((item) => ({
+            options={positions.map((item) => ({
               label: item,
               value: item,
             }))}

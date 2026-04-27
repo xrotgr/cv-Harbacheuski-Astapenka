@@ -5,6 +5,8 @@ export const GET_PROFILE = gql`
       id
       email
       created_at
+      department_name
+      position_name
       profile {
         id
         created_at
@@ -22,6 +24,25 @@ export const GET_PROFILE = gql`
     }
   }
 `;
+
+export const GET_DEPARTMENTS = gql`
+  query GetDepartments {
+    departments {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_POSITIONS = gql`
+  query GetPositions {
+    positions {
+      id
+      name
+    }
+  }
+`;
+
 export const UPDATE_PROFILE = gql`
   mutation UpdateProfile($profile: UpdateProfileInput!) {
     updateProfile(profile: $profile) {
