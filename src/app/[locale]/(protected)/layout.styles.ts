@@ -7,5 +7,7 @@ export const styles = {
   },
   content: {
     ml: { xs: 0, md: DRAWER_WIDTH },
+    pl: 3,
+    pt: 2,
   },
 };

@@ -10,8 +10,7 @@ const Search = styled('div')(({ theme }) => ({
     boxShadow: alpha(theme.palette.common.white, 0.25),
   },
   width: 'fit-content',
-  marginBlock: 30,
-  marginLeft: 10,
+  marginBlock: 20,
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({

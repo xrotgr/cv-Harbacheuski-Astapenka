@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@apollo/client/react';
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
@@ -46,6 +46,7 @@ export default function UsersPage() {
 
   return (
     <>
+      <Typography sx={{ color: 'text.secondary' }}>Employees</Typography>
       <SearchBar value={searchValue} onChange={handleInputChange} />
       <Table columns={columns} rows={filteredRows} />
     </>
