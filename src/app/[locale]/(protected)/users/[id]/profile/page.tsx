@@ -26,7 +26,6 @@ export default async function UserProfilePage({ params }: PageProps) {
   const canEdit = session?.user?.id === id;
   return (
     <div>
-      <h1>profile{id}</h1>
       <ProfileForm user={data?.user} canEdit={canEdit} />
     </div>
   );

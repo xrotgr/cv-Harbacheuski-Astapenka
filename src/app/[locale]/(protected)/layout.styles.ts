@@ -1,11 +1,10 @@
-import { DRAWER_WIDTH } from '@/shared/model/constants';
-
 export const styles = {
   wrapper: {
-    display: 'block',
+    display: { xs: 'block', md: 'flex' },
     pb: { xs: '72px', md: 0 },
   },
   content: {
-    ml: { xs: 0, md: DRAWER_WIDTH },
+    flex: 1,
+    ml: 0,
   },
 };
