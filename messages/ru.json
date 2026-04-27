@@ -22,7 +22,8 @@
     "openSettings": "Открыть настройки авторизации"
   },
   "common": {
-    "cancel": "ОТМЕНА"
+    "cancel": "ОТМЕНА",
+    "update": "ОБНОВИТЬ"
   },
   "profile": {
     "avatar": {

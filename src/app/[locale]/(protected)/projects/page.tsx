@@ -33,16 +33,22 @@ interface GetProjectsResponse {
 }
 
 export default async function ProjectsPage() {
-  const { data, error } = await query<GetProjectsResponse>({
-    query: GET_PROJECTS,
-  });
-  if (error) {
+  try {
+    const { data, error } = await query<GetProjectsResponse>({
+      query: GET_PROJECTS,
+    });
+
+    if (error) {
+      return <div>Failed to load projects</div>;
+    }
+
+    return (
+      <div>
+        <h1>Projects</h1>
+        <div>{JSON.stringify(data?.projects ?? [], null, 2)}</div>
+      </div>
+    );
+  } catch {
     return <div>Failed to load projects</div>;
   }
-  return (
-    <div>
-      <h1>Projects</h1>
-      <div>{JSON.stringify(data?.projects ?? [], null, 2)}</div>
-    </div>
-  );
 }

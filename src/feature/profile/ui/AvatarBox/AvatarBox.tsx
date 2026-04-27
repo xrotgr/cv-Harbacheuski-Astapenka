@@ -1,6 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close';
 import UploadIcon from '@mui/icons-material/Upload';
 import { Alert, Avatar, Box, Button, IconButton, Snackbar, Typography } from '@mui/material';
+import { User } from 'cv-graphql';
 import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 import { Controller } from 'react-hook-form';
@@ -8,10 +9,10 @@ import { Controller } from 'react-hook-form';
 import { styles } from './AvatarBox.styles';
 
 interface AvatarBoxProps {
-  email: string;
+  user: User;
 }
 
-export const AvatarBox = ({ email }: AvatarBoxProps) => {
+export const AvatarBox = ({ user }: AvatarBoxProps) => {
   const [previewAvatar, setPreviewAvatar] = useState<string>('');
   const [snackbarError, setSnackbarError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -52,7 +53,9 @@ export const AvatarBox = ({ email }: AvatarBoxProps) => {
       <Box sx={styles.wrapper}>
         <Box sx={styles.avatarWrapper}>
           <Avatar src={previewAvatar || undefined} sx={styles.avatar}>
-            {email?.[0]?.toUpperCase()}
+            {user.profile.first_name
+              ? user.profile.first_name?.[0]?.toUpperCase()
+              : user.email?.[0]?.toUpperCase()}
           </Avatar>
           {previewAvatar && (
             <IconButton size="small" sx={styles.removeButton} onClick={() => setPreviewAvatar('')}>

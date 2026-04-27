@@ -4,7 +4,7 @@ export const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: { sx: '32px', md: '64px' },
+    gap: { xs: '32px', md: '64px' },
     mb: 2,
   },
   avatarWrapper: {

@@ -1,20 +1,23 @@
 import { gql } from '@apollo/client';
 export const GET_PROFILE = gql`
   query GetProfile($userId: ID!) {
-    profile(userId: $userId) {
+    user(userId: $userId) {
       id
+      email
       created_at
-      first_name
-      last_name
-      full_name
-      avatar
-
-      skills {
-        mastery
-      }
-
-      languages {
-        proficiency
+      profile {
+        id
+        created_at
+        first_name
+        last_name
+        full_name
+        avatar
+        skills {
+          mastery
+        }
+        languages {
+          proficiency
+        }
       }
     }
   }

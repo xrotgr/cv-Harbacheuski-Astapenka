@@ -1,26 +1,38 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
+import type { User } from 'cv-graphql';
+import { useTranslations } from 'next-intl';
 
-import { FormHOC } from '@/shared/ui';
+import { FormHOC, FormSelect, FormTextField } from '@/shared/ui';
 
+import { DEPARTMENTS, POSITIONS } from '../module';
 import { ProfileFormValues, ProfileSchema } from '../module/schema';
 
 import { AvatarBox } from './AvatarBox/AvatarBox';
 import { styles } from './ProfileForm.styles';
 
-export const ProfileForm = () => {
+interface ProfileFormProps {
+  user: User;
+}
+
+export const ProfileForm = ({ user }: ProfileFormProps) => {
+  const t = useTranslations('common');
+
   const defaultValues: ProfileFormValues = {
-    firstName: '',
-    lastName: '',
+    firstName: user.profile.first_name || '',
+    lastName: user.profile.last_name || '',
     department: '',
     position: '',
-    avatarUrl: '',
+    avatarUrl: user.profile.avatar || '',
   };
 
-  const onSubmit = () => {
+  const formatted = new Date(Number(user.created_at)).toDateString();
+
+  const onSubmit = (data: ProfileFormValues) => {
     //TODO: submit logic
+    console.log(data);
   };
 
   return (
@@ -31,10 +43,41 @@ export const ProfileForm = () => {
         onSubmit={onSubmit}
         formStyle={styles.formStyle}
       >
-        <AvatarBox email={'ast@gmail.com'} />
-        <Button type="submit" variant="contained" sx={styles.submitButton}>
-          UPDATE
-        </Button>
+        <AvatarBox user={user} />
+        <Box sx={styles.profileInformation}>
+          <Typography>{user.profile.full_name}</Typography>
+          <Typography>{user.email}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {`A member since ${formatted}`}
+          </Typography>
+        </Box>
+
+        <Box sx={styles.formTextFieldBox}>
+          <FormTextField<ProfileFormValues> name="firstName" label="First Name" />
+          <FormTextField<ProfileFormValues> name="lastName" label="Last Name" />
+          <FormSelect
+            name="department"
+            label="Department"
+            options={DEPARTMENTS.map((item) => ({
+              label: item,
+              value: item,
+            }))}
+          />
+
+          <FormSelect
+            name="position"
+            label="Position"
+            options={POSITIONS.map((item) => ({
+              label: item,
+              value: item,
+            }))}
+          />
+        </Box>
+        <Box sx={styles.submitWrapper}>
+          <Button type="submit" variant="contained" sx={styles.submitButton}>
+            {t('update')}
+          </Button>
+        </Box>
       </FormHOC>
     </Box>
   );

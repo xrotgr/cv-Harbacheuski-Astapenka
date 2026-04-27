@@ -22,7 +22,8 @@
     "openSettings": "Open auth settings"
   },
   "common": {
-    "cancel": "CANCEL"
+    "cancel": "CANCEL",
+    "update": "UPDATE"
   },
   "profile": {
     "avatar": {
