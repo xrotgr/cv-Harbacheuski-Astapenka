@@ -21,9 +21,19 @@
     "languageLabel": "Язык",
     "openSettings": "Открыть настройки авторизации"
   },
+  "sidebar": {
+    "employees": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cv": "Резюме",
+    "profile": "Профиль",
+    "settings": "Настройки",
+    "logout": "Выйти"
+  },
   "common": {
     "cancel": "ОТМЕНА",
-    "update": "ОБНОВИТЬ"
+    "update": "ОБНОВИТЬ",
+    "search": "Поиск"
   },
   "profile": {
     "avatar": {
@@ -35,5 +45,12 @@
         "uploadFailed": "Не удалось загрузить аватар"
       }
     }
+  },
+  "UsersTable": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Почта",
+    "department": "Отдел",
+    "position": "Должность"
   }
 }

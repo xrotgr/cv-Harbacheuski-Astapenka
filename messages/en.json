@@ -21,9 +21,19 @@
     "languageLabel": "Language",
     "openSettings": "Open auth settings"
   },
+  "sidebar": {
+    "employees": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cv": "CVs",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "common": {
     "cancel": "CANCEL",
-    "update": "UPDATE"
+    "update": "UPDATE",
+    "search": "Search"
   },
   "profile": {
     "avatar": {
@@ -35,5 +45,12 @@
         "uploadFailed": "Failed to upload avatar"
       }
     }
+  },
+  "UsersTable": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position"
   }
 }

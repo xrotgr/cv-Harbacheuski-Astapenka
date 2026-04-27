@@ -1,7 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useRouter } from '@/i18n/navigation';
 
@@ -44,8 +44,16 @@ const getApiErrorMessage = (error: unknown): string | null => {
 export const useAuthSubmit = (type: AuthType) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [signup] = useSignup();
   const router = useRouter();
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      router.push('/');
+      setShouldRedirect(false);
+    }
+  }, [router, shouldRedirect]);
 
   const handleSubmit = async (values: AuthFormValues | ForgotPasswordFormValues) => {
     try {
@@ -68,7 +76,7 @@ export const useAuthSubmit = (type: AuthType) => {
             return;
           }
 
-          router.push('/');
+          setShouldRedirect(true);
           break;
         }
 
@@ -102,7 +110,7 @@ export const useAuthSubmit = (type: AuthType) => {
             return;
           }
 
-          router.push('/');
+          setShouldRedirect(true);
           break;
         }
 
