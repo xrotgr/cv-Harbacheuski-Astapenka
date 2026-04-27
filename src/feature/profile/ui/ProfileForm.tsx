@@ -15,9 +15,10 @@ import { styles } from './ProfileForm.styles';
 
 interface ProfileFormProps {
   user: User;
+  canEdit: boolean;
 }
 
-export const ProfileForm = ({ user }: ProfileFormProps) => {
+export const ProfileForm = ({ user, canEdit }: ProfileFormProps) => {
   const t = useTranslations('common');
 
   const defaultValues: ProfileFormValues = {
@@ -43,7 +44,7 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
         onSubmit={onSubmit}
         formStyle={styles.formStyle}
       >
-        <AvatarBox user={user} />
+        <AvatarBox user={user} canEdit={canEdit} />
         <Box sx={styles.profileInformation}>
           <Typography>{user.profile.full_name}</Typography>
           <Typography>{user.email}</Typography>
@@ -53,8 +54,12 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
         </Box>
 
         <Box sx={styles.formTextFieldBox}>
-          <FormTextField<ProfileFormValues> name="firstName" label="First Name" />
-          <FormTextField<ProfileFormValues> name="lastName" label="Last Name" />
+          <FormTextField<ProfileFormValues>
+            name="firstName"
+            label="First Name"
+            disabled={!canEdit}
+          />
+          <FormTextField<ProfileFormValues> name="lastName" label="Last Name" disabled={!canEdit} />
           <FormSelect
             name="department"
             label="Department"
@@ -62,6 +67,7 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
               label: item,
               value: item,
             }))}
+            disabled={!canEdit}
           />
 
           <FormSelect
@@ -71,13 +77,16 @@ export const ProfileForm = ({ user }: ProfileFormProps) => {
               label: item,
               value: item,
             }))}
+            disabled={!canEdit}
           />
         </Box>
-        <Box sx={styles.submitWrapper}>
-          <Button type="submit" variant="contained" sx={styles.submitButton}>
-            {t('update')}
-          </Button>
-        </Box>
+        {canEdit && (
+          <Box sx={styles.submitWrapper}>
+            <Button type="submit" variant="contained" sx={styles.submitButton}>
+              {t('update')}
+            </Button>
+          </Box>
+        )}
       </FormHOC>
     </Box>
   );

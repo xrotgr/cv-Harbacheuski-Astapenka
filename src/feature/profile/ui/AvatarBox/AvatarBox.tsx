@@ -10,9 +10,10 @@ import { styles } from './AvatarBox.styles';
 
 interface AvatarBoxProps {
   user: User;
+  canEdit: boolean;
 }
 
-export const AvatarBox = ({ user }: AvatarBoxProps) => {
+export const AvatarBox = ({ user, canEdit }: AvatarBoxProps) => {
   const [previewAvatar, setPreviewAvatar] = useState<string>('');
   const [snackbarError, setSnackbarError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -63,31 +64,33 @@ export const AvatarBox = ({ user }: AvatarBoxProps) => {
             </IconButton>
           )}
         </Box>
-        <Controller
-          name="avatarUrl"
-          render={({ field }) => (
-            <Box sx={styles.controlledBox}>
-              <Button
-                variant="text"
-                startIcon={<UploadIcon sx={styles.uploadIcon} />}
-                onClick={handleUploadClick}
-                sx={styles.uploadButton}
-              >
-                {t('profile.avatar.uploadButton')}
-              </Button>
-              <Typography variant="caption" sx={styles.uploadSubtitle}>
-                {t('profile.avatar.uploadHint')}
-              </Typography>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/png,image/jpeg,image/gif"
-                hidden
-                onChange={(e) => handleAvatarChange(e.target.files?.[0], field.onChange)}
-              />
-            </Box>
-          )}
-        />
+        {canEdit && (
+          <Controller
+            name="avatarUrl"
+            render={({ field }) => (
+              <Box sx={styles.controlledBox}>
+                <Button
+                  variant="text"
+                  startIcon={<UploadIcon sx={styles.uploadIcon} />}
+                  onClick={handleUploadClick}
+                  sx={styles.uploadButton}
+                >
+                  {t('profile.avatar.uploadButton')}
+                </Button>
+                <Typography variant="caption" sx={styles.uploadSubtitle}>
+                  {t('profile.avatar.uploadHint')}
+                </Typography>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/gif"
+                  hidden
+                  onChange={(e) => handleAvatarChange(e.target.files?.[0], field.onChange)}
+                />
+              </Box>
+            )}
+          />
+        )}
       </Box>
 
       <Snackbar

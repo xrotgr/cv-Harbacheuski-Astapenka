@@ -9,6 +9,7 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    pb: '40px',
   },
   formTextFieldBox: {
     display: 'grid',
