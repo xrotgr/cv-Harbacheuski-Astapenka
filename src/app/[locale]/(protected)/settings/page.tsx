@@ -1,0 +1,24 @@
+import { Box } from '@mui/material';
+
+import { ThemeSelect } from '@/feature/theme/ui/ThemeSelect';
+import { LanguageSelect } from '@/shared/ui';
+
+export default function Page() {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 3,
+          width: '800px',
+          height: '100vh',
+          marginInline: 4,
+        }}
+      >
+        <ThemeSelect />
+        <LanguageSelect />
+      </Box>
+    </Box>
+  );
+}
