@@ -23,7 +23,7 @@ export default async function UserProfilePage({ params }: PageProps) {
   }
 
   const session = await getServerSession(authOptions);
-  const canEdit = session?.user?.id === 'admin';
+  const canEdit = session?.user?.id === id;
   return (
     <div>
       <h1>profile{id}</h1>

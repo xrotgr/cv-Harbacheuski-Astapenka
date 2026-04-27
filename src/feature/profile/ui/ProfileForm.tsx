@@ -24,8 +24,8 @@ export const ProfileForm = ({ user, canEdit }: ProfileFormProps) => {
   const defaultValues: ProfileFormValues = {
     firstName: user.profile.first_name || '',
     lastName: user.profile.last_name || '',
-    department: '',
-    position: '',
+    department: user.department_name || '',
+    position: user.position_name || '',
     avatarUrl: user.profile.avatar || '',
   };
 
