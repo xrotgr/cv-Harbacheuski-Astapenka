@@ -15,6 +15,9 @@ export const theme = createTheme({
         action: {
           hover: 'rgba(0, 0, 0, 0.04)',
         },
+        text: {
+          secondary: '#777',
+        },
       },
     },
     dark: {
