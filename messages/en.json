@@ -40,5 +40,11 @@
     "email": "Email",
     "department": "Department",
     "position": "Position"
+  },
+  "Settings": {
+    "appearance": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "deviceSettings": "Device settings"
   }
 }

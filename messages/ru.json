@@ -40,5 +40,11 @@
     "email": "Почта",
     "department": "Отдел",
     "position": "Должность"
+  },
+  "Settings": {
+    "appearance": "Внешний вид",
+    "light": "Светлый",
+    "dark": "Тёмный",
+    "deviceSettings": "Настройки устройства"
   }
 }
