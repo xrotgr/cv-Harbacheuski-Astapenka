@@ -1,48 +1,78 @@
-import { gql } from '@apollo/client';
+'use client';
 
-import { query } from '@/app/ApolloClient';
+import { columns } from '@/entities/Project/ui/Table/tableColumns';
+import { Row } from '@/entities/Project/ui/Table/TableRow';
+import SortableTable from '@/shared/ui/table/SortableTable';
 
-//TODO: test component
-export const GET_PROJECTS = gql`
-  query GetProjects {
-    projects {
-      id
-      name
-      internal_name
-      domain
-      start_date
-      end_date
-      description
-      environment
-    }
-  }
-`;
+const rows = [
+  {
+    id: '1',
+    created_at: 'sds',
+    environment: ['React', 'Next.js', 'React hook forms'],
+    name: ' Haul Tracking',
+    domain: 'Business apps',
+    start_date: '02/11/2024',
+    end_date: 'Till now',
+    description:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatibus illum, velit et quod architecto? Impedit et rem molestiae? Adipisci quod assumenda tempora magnam, ad vero vitae, aliquid facere nisi eos corrupti? Modi esse doloremque ullam magnam fuga dicta consectetur? Officiis nesciunt molestias adipisci accusamus! Explicabo nulla tempore excepturi doloremque!',
+  },
+  {
+    id: '2',
+    created_at: 'sds',
+    environment: ['React', 'Next.js', 'React hook forms'],
+    name: ' Haul Tracking',
+    domain: 'Business apps',
+    start_date: '02/11/2024',
+    end_date: 'Till now',
+    description:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatibus illum, velit et quod architecto? Impedit et rem molestiae? Adipisci quod assumenda tempora magnam, ad vero vitae, aliquid facere nisi eos corrupti? Modi esse doloremque ullam magnam fuga dicta consectetur? Officiis nesciunt molestias adipisci accusamus! Explicabo nulla tempore excepturi doloremque!',
+  },
+  {
+    id: '3',
+    created_at: 'sds',
+    environment: ['React', 'Next.js', 'React hook forms'],
+    name: ' Haul Tracking',
+    domain: 'Business apps',
+    start_date: '02/11/2024',
+    end_date: 'Till now',
+    description:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatibus illum, velit et quod architecto? Impedit et rem molestiae? Adipisci quod assumenda tempora magnam, ad vero vitae, aliquid facere nisi eos corrupti? Modi esse doloremque ullam magnam fuga dicta consectetur? Officiis nesciunt molestias adipisci accusamus! Explicabo nulla tempore excepturi doloremque!',
+  },
+  {
+    id: '4',
+    created_at: 'sds',
+    environment: ['React', 'Next.js', 'React hook forms'],
+    name: ' Haul Tracking',
+    domain: 'Business apps',
+    start_date: '02/11/2024',
+    end_date: 'Till now',
+    description:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatibus illum, velit et quod architecto? Impedit et rem molestiae? Adipisci quod assumenda tempora magnam, ad vero vitae, aliquid facere nisi eos corrupti? Modi esse doloremque ullam magnam fuga dicta consectetur? Officiis nesciunt molestias adipisci accusamus! Explicabo nulla tempore excepturi doloremque!',
+  },
+  {
+    id: '5',
+    created_at: 'sds',
+    environment: ['React', 'Next.js', 'React hook forms'],
+    name: ' Haul Tracking',
+    domain: 'Business apps',
+    start_date: '02/11/2024',
+    end_date: 'Till now',
+    description:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatibus illum, velit et quod architecto? Impedit et rem molestiae? Adipisci quod assumenda tempora magnam, ad vero vitae, aliquid facere nisi eos corrupti? Modi esse doloremque ullam magnam fuga dicta consectetur? Officiis nesciunt molestias adipisci accusamus! Explicabo nulla tempore excepturi doloremque!',
+  },
+  {
+    id: '6',
+    created_at: 'sds',
+    environment: ['React', 'Next.js', 'React hook forms'],
+    name: ' Haul Tracking',
+    domain: 'Business apps',
+    start_date: '02/11/2024',
+    end_date: 'Till now',
+    description:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatibus illum, velit et quod architecto? Impedit et rem molestiae? Adipisci quod assumenda tempora magnam, ad vero vitae, aliquid facere nisi eos corrupti? Modi esse doloremque ullam magnam fuga dicta consectetur? Officiis nesciunt molestias adipisci accusamus! Explicabo nulla tempore excepturi doloremque!',
+  },
+];
 
-interface Project {
-  id: string;
-  name: string;
-  internal_name: string;
-  domain: string;
-  start_date: string | null;
-  end_date: string | null;
-  description: string | null;
-  environment: string | null;
-}
-interface GetProjectsResponse {
-  projects: Project[];
-}
-
-export default async function ProjectsPage() {
-  const { data, error } = await query<GetProjectsResponse>({
-    query: GET_PROJECTS,
-  });
-  if (error) {
-    return <div>Failed to load projects</div>;
-  }
-  return (
-    <div>
-      <h1>Projects</h1>
-      <div>{JSON.stringify(data?.projects ?? [], null, 2)}</div>
-    </div>
-  );
+export default function Page() {
+  return <SortableTable columns={columns} rows={rows} rowComponent={Row} />;
 }
