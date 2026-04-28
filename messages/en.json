@@ -41,6 +41,13 @@
     "department": "Department",
     "position": "Position"
   },
+  "ProjectsTable": {
+    "name": "Name",
+    "domain": "Domain",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "tillNow": "Till now"
+  },
   "Settings": {
     "appearance": "Appearance",
     "light": "Light",

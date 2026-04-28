@@ -41,6 +41,13 @@
     "department": "Отдел",
     "position": "Должность"
   },
+  "ProjectsTable": {
+    "name": "Имя",
+    "domain": "Домен",
+    "startDate": "Дата начала",
+    "endDate": "Дата окончания",
+    "tillNow": "По настоящее время"
+  },
   "Settings": {
     "appearance": "Внешний вид",
     "light": "Светлый",

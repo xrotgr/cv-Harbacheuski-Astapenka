@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@apollo/client/react';
+import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import SortableTable from '@/shared/ui/Table/SortableTable';
@@ -7,7 +8,7 @@ import { GET_PROJECTS } from '../../api/getProjects';
 import { getFilteredTableRows } from '../../lib/helpers/getFilteredTableRows';
 import { getTableRows } from '../../lib/helpers/getTableRows';
 
-import { columns } from './tableColumns';
+import { getTableColumns } from './getTableColumns';
 import { Row } from './TableRow';
 
 interface TableWrapperProps {
@@ -16,9 +17,12 @@ interface TableWrapperProps {
 }
 
 export const TableWrapper = ({ searchValue, handleInputReset }: TableWrapperProps) => {
+  const t = useTranslations('ProjectsTable');
   const { data } = useSuspenseQuery(GET_PROJECTS);
 
-  const rows = getTableRows(data);
+  const columns = useMemo(() => getTableColumns(t), [t]);
+
+  const rows = useMemo(() => getTableRows(data, t('tillNow')), [data, t]);
 
   const filteredRows = useMemo(() => getFilteredTableRows(rows, searchValue), [rows, searchValue]);
 
