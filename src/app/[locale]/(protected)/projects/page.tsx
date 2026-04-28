@@ -1,8 +1,13 @@
 'use client';
 
+import { Box, Typography } from '@mui/material';
+import { useMemo, useState } from 'react';
+
+import { getFilteredTableRows } from '@/entities/Project/lib/helpers/getFilteredTableRows';
 import { columns } from '@/entities/Project/ui/Table/tableColumns';
 import { Row } from '@/entities/Project/ui/Table/TableRow';
-import SortableTable from '@/shared/ui/table/SortableTable';
+import SearchBar from '@/shared/ui/search/SearchBar';
+import SortableTable from '@/shared/ui/Table/SortableTable';
 
 const rows = [
   {
@@ -74,5 +79,28 @@ const rows = [
 ];
 
 export default function Page() {
-  return <SortableTable columns={columns} rows={rows} rowComponent={Row} />;
+  const [searchValue, setSearchValue] = useState('');
+
+  const filteredRows = useMemo(() => getFilteredTableRows(rows, searchValue), [searchValue]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleInputReset = () => {
+    setSearchValue('');
+  };
+
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Typography sx={{ color: 'text.secondary' }}>Projects</Typography>
+      <SearchBar value={searchValue} onChange={handleInputChange} />
+      <SortableTable
+        columns={columns}
+        rows={filteredRows}
+        rowComponent={Row}
+        handleInputReset={handleInputReset}
+      />
+    </Box>
+  );
 }

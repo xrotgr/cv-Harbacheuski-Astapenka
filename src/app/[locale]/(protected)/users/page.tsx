@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@apollo/client/react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
@@ -11,7 +11,8 @@ import { getFilteredTableRows } from '@/entities/User/lib/helpers/getFilteredTab
 import { getTableColumns } from '@/entities/User/lib/helpers/getTableColumns';
 import { getTableRows } from '@/entities/User/lib/helpers/getTableRows';
 import SearchBar from '@/shared/ui/search/SearchBar';
-import Table from '@/shared/ui/table/Table';
+import { Spinner } from '@/shared/ui/Spinner/Spinner';
+import Table from '@/shared/ui/Table/Table';
 
 export default function UsersPage() {
   const t = useTranslations('UsersTable');
@@ -24,19 +25,7 @@ export default function UsersPage() {
 
   const filteredRows = useMemo(() => getFilteredTableRows(rows, searchValue), [rows, searchValue]);
 
-  if (loading)
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+  if (loading) return <Spinner />;
 
   if (error) return <>Error {error.message}</>;
 

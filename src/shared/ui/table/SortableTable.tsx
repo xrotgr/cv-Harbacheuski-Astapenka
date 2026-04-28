@@ -14,6 +14,8 @@ import { useMemo, useState } from 'react';
 
 import { getComparator, Order } from '@/shared/lib/getComparator';
 
+import { EmptyTableState } from './EmptyTableState';
+
 interface Column<T> {
   id: keyof T;
   label: string;
@@ -23,12 +25,14 @@ interface SortableTableProps<T> {
   columns: readonly Column<T>[];
   rows: T[];
   rowComponent: React.ComponentType<{ row: T }>;
+  handleInputReset: () => void;
 }
 
 export default function SortableTable<T extends { id: string }>({
   columns,
   rows,
   rowComponent: Row,
+  handleInputReset,
 }: SortableTableProps<T>) {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof T>(columns[0].id);
@@ -45,36 +49,36 @@ export default function SortableTable<T extends { id: string }>({
   );
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <TableContainer sx={{ height: '100vh' }}>
-        <Table stickyHeader sx={{ minWidth: 650 }}>
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell key={String(column.id)}>
-                  <TableSortLabel
-                    active={orderBy === column.id}
-                    direction={orderBy === column.id ? order : 'asc'}
-                    onClick={() => handleRequestSort(column.id)}
-                  >
-                    {column.label}
-                    {orderBy === column.id ? (
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                      </Box>
-                    ) : null}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedRows.map((row) => (
-              <Row key={row.id} row={row} />
+    <TableContainer sx={{ flex: 1 }}>
+      <Table stickyHeader sx={{ height: '100%' }}>
+        <TableHead>
+          <TableRow>
+            {columns.map((column) => (
+              <TableCell key={String(column.id)}>
+                <TableSortLabel
+                  active={orderBy === column.id}
+                  direction={orderBy === column.id ? order : 'asc'}
+                  onClick={() => handleRequestSort(column.id)}
+                >
+                  {column.label}
+                  {orderBy === column.id ? (
+                    <Box component="span" sx={visuallyHidden}>
+                      {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                    </Box>
+                  ) : null}
+                </TableSortLabel>
+              </TableCell>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+          </TableRow>
+        </TableHead>
+        <TableBody sx={{ height: '100%' }}>
+          {sortedRows.length === 0 ? (
+            <EmptyTableState colSpan={columns.length} onReset={handleInputReset} />
+          ) : (
+            sortedRows.map((row) => <Row key={row.id} row={row} />)
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
