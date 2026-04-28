@@ -1,20 +1,8 @@
 import { Chip, TableCell, TableRow, Typography } from '@mui/material';
 import { Project } from 'cv-graphql';
 
-type Row = Pick<
-  Project,
-  | 'created_at'
-  | 'description'
-  | 'domain'
-  | 'end_date'
-  | 'environment'
-  | 'id'
-  | 'name'
-  | 'start_date'
->;
-
 interface RowProps {
-  row: Row;
+  row: Project;
 }
 
 export const Row = ({ row }: RowProps) => {
