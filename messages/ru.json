@@ -42,7 +42,8 @@
       "errors": {
         "unsupportedFormat": "Разрешены только png, jpg, gif",
         "fileTooLarge": "Размер файла должен быть <= 0.5MB",
-        "uploadFailed": "Не удалось загрузить аватар"
+        "uploadFailed": "Не удалось загрузить аватар",
+        "deleteFailed": "Не удалось удалить аватар"
       }
     }
   },

@@ -4,7 +4,11 @@ import { Alert, Avatar, Box, Button, IconButton, Snackbar, Typography } from '@m
 import { User } from 'cv-graphql';
 import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
+
+import { useDeleteAvatar, useUploadAvatar } from '../../api';
+import { getAvatarValidationErrorKey } from '../../module';
+import { type ProfileFormValues } from '../../module/schema';
 
 import { styles } from './AvatarBox.styles';
 
@@ -14,36 +18,43 @@ interface AvatarBoxProps {
 }
 
 export const AvatarBox = ({ user, canEdit }: AvatarBoxProps) => {
-  const [previewAvatar, setPreviewAvatar] = useState<string>('');
   const [snackbarError, setSnackbarError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const t = useTranslations();
+  const { control, setValue } = useFormContext<ProfileFormValues>();
+  const avatarValue = useWatch({
+    control,
+    name: 'avatarUrl',
+    defaultValue: user.profile.avatar || '',
+  });
 
-  const uploadAvatar = async (file: File): Promise<string> => {
-    return URL.createObjectURL(file);
-  };
+  const { deleteAvatar } = useDeleteAvatar();
+  const { uploadAvatar } = useUploadAvatar();
 
   const handleUploadClick = () => fileInputRef.current?.click();
 
-  const handleAvatarChange = async (
-    file: File | undefined,
-    onChange: (avatarUrl: string) => void
-  ) => {
-    if (!file) return;
-    const allowed = ['image/png', 'image/jpeg', 'image/gif'];
-    if (!allowed.includes(file.type)) {
-      setSnackbarError(t('profile.avatar.errors.unsupportedFormat'));
-      return;
+  const handleRemoveAvatar = async () => {
+    const previousAvatar = avatarValue;
+
+    try {
+      setValue('avatarUrl', '', { shouldDirty: true });
+      await deleteAvatar({ userId: user.id });
+    } catch {
+      setValue('avatarUrl', previousAvatar, { shouldDirty: true });
+      setSnackbarError(t('profile.avatar.errors.deleteFailed'));
     }
-    const maxSize = 500 * 1024;
-    if (file.size > maxSize) {
-      setSnackbarError(t('profile.avatar.errors.fileTooLarge'));
+  };
+
+  const handleAvatarChange = async (file: File | undefined) => {
+    if (!file) return;
+    const validationErrorKey = getAvatarValidationErrorKey(file);
+    if (validationErrorKey) {
+      setSnackbarError(t(validationErrorKey));
       return;
     }
     try {
-      const avatarUrl = await uploadAvatar(file);
-      setPreviewAvatar(avatarUrl);
-      onChange(avatarUrl);
+      const avatarUrl = await uploadAvatar({ userId: user.id, file });
+      setValue('avatarUrl', avatarUrl, { shouldDirty: true });
     } catch {
       setSnackbarError(t('profile.avatar.errors.uploadFailed'));
     }
@@ -53,43 +64,46 @@ export const AvatarBox = ({ user, canEdit }: AvatarBoxProps) => {
     <>
       <Box sx={styles.wrapper}>
         <Box sx={styles.avatarWrapper}>
-          <Avatar src={previewAvatar || undefined} sx={styles.avatar}>
+          <Avatar src={avatarValue || undefined} sx={styles.avatar}>
             {user.profile.first_name
               ? user.profile.first_name?.[0]?.toUpperCase()
               : user.email?.[0]?.toUpperCase()}
           </Avatar>
-          {previewAvatar && (
-            <IconButton size="small" sx={styles.removeButton} onClick={() => setPreviewAvatar('')}>
+
+          {avatarValue && canEdit && (
+            <IconButton
+              size="small"
+              sx={styles.removeButton}
+              onClick={() => void handleRemoveAvatar()}
+            >
               <CloseIcon fontSize="small" />
             </IconButton>
           )}
         </Box>
+
         {canEdit && (
-          <Controller
-            name="avatarUrl"
-            render={({ field }) => (
-              <Box sx={styles.controlledBox}>
-                <Button
-                  variant="text"
-                  startIcon={<UploadIcon sx={styles.uploadIcon} />}
-                  onClick={handleUploadClick}
-                  sx={styles.uploadButton}
-                >
-                  {t('profile.avatar.uploadButton')}
-                </Button>
-                <Typography variant="caption" sx={styles.uploadSubtitle}>
-                  {t('profile.avatar.uploadHint')}
-                </Typography>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/png,image/jpeg,image/gif"
-                  hidden
-                  onChange={(e) => handleAvatarChange(e.target.files?.[0], field.onChange)}
-                />
-              </Box>
-            )}
-          />
+          <Box sx={styles.controlledBox}>
+            <Button
+              variant="text"
+              startIcon={<UploadIcon sx={styles.uploadIcon} />}
+              onClick={handleUploadClick}
+              sx={styles.uploadButton}
+            >
+              {t('profile.avatar.uploadButton')}
+            </Button>
+
+            <Typography variant="caption" sx={styles.uploadSubtitle}>
+              {t('profile.avatar.uploadHint')}
+            </Typography>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/png,image/jpeg,image/gif"
+              hidden
+              onChange={(e) => handleAvatarChange(e.target.files?.[0])}
+            />
+          </Box>
         )}
       </Box>
 

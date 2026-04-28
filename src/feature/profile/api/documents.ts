@@ -55,3 +55,32 @@ export const UPDATE_PROFILE = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser($user: UpdateUserInput!) {
+    updateUser(user: $user) {
+      id
+      department_name
+      position_name
+      profile {
+        id
+        first_name
+        last_name
+        full_name
+        avatar
+      }
+    }
+  }
+`;
+
+export const UPLOAD_AVATAR = gql`
+  mutation UploadAvatar($avatar: UploadAvatarInput!) {
+    uploadAvatar(avatar: $avatar)
+  }
+`;
+
+export const DELETE_AVATAR = gql`
+  mutation DeleteAvatar($avatar: DeleteAvatarInput!) {
+    deleteAvatar(avatar: $avatar)
+  }
+`;

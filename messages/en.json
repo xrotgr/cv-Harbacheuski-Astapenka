@@ -42,7 +42,8 @@
       "errors": {
         "unsupportedFormat": "Only png, jpg, gif are allowed",
         "fileTooLarge": "File size must be <= 0.5MB",
-        "uploadFailed": "Failed to upload avatar"
+        "uploadFailed": "Failed to upload avatar",
+        "deleteFailed": "Failed to delete avatar"
       }
     }
   },

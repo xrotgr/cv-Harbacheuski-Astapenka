@@ -35,8 +35,8 @@ export default async function UserProfilePage({ params }: PageProps) {
     return <div>Failed to load data</div>;
   }
 
-  const departments = departmentsData?.departments?.map((department) => department.name) ?? [];
-  const positions = positionsData?.positions?.map((position) => position.name) ?? [];
+  const departments = departmentsData?.departments ?? [];
+  const positions = positionsData?.positions ?? [];
 
   const session = await getServerSession(authOptions);
   const canEdit = session?.user?.id === id;
