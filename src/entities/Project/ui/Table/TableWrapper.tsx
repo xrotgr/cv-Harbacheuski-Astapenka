@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@apollo/client/react';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
-import SortableTable from '@/shared/ui/Table/SortableTable';
+import SortableTable from '@/shared/ui/table/SortableTable';
 
 import { GET_PROJECTS } from '../../api/getProjects';
 import { getFilteredTableRows } from '../../lib/helpers/getFilteredTableRows';

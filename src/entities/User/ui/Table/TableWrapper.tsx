@@ -3,7 +3,7 @@ import { GridColDef } from '@mui/x-data-grid';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
-import Table from '@/shared/ui/Table/Table';
+import Table from '@/shared/ui/table/Table';
 
 import { GET_USERS } from '../../api/getUsers';
 import { getFilteredTableRows } from '../../lib/helpers/getFilteredTableRows';
