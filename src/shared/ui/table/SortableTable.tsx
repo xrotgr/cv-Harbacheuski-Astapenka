@@ -48,9 +48,11 @@ export default function SortableTable<T extends { id: string }>({
     [order, orderBy, rows]
   );
 
+  const height = sortedRows.length === 0 ? { height: '100%' } : { height: 'auto' };
+
   return (
     <TableContainer sx={{ flex: 1 }}>
-      <Table stickyHeader sx={{ height: '100%' }}>
+      <Table stickyHeader sx={height}>
         <TableHead>
           <TableRow>
             {columns.map((column) => (
@@ -71,7 +73,7 @@ export default function SortableTable<T extends { id: string }>({
             ))}
           </TableRow>
         </TableHead>
-        <TableBody sx={{ height: '100%' }}>
+        <TableBody sx={height}>
           {sortedRows.length === 0 ? (
             <EmptyTableState colSpan={columns.length} onReset={handleInputReset} />
           ) : (

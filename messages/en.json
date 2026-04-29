@@ -43,9 +43,10 @@
   },
   "ProjectsTable": {
     "name": "Name",
+    "internal_name": "Internal name",
     "domain": "Domain",
-    "startDate": "Start date",
-    "endDate": "End date",
+    "start_date": "Start date",
+    "end_date": "End date",
     "tillNow": "Till now"
   },
   "Settings": {

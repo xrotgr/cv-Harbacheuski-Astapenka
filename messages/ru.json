@@ -43,9 +43,10 @@
   },
   "ProjectsTable": {
     "name": "Имя",
+    "internal_name": "Внутреннее имя",
     "domain": "Домен",
-    "startDate": "Дата начала",
-    "endDate": "Дата окончания",
+    "start_date": "Дата начала",
+    "end_date": "Дата окончания",
     "tillNow": "По настоящее время"
   },
   "Settings": {

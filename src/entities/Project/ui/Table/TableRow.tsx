@@ -5,17 +5,20 @@ interface RowProps {
   row: Project;
 }
 
+const borderBottom = { borderBottom: 'none' };
+
 export const Row = ({ row }: RowProps) => {
   return (
     <>
       <TableRow>
-        <TableCell sx={{ borderBottom: 'none' }}>{row.name}</TableCell>
-        <TableCell sx={{ borderBottom: 'none' }}>{row.domain}</TableCell>
-        <TableCell sx={{ borderBottom: 'none' }}>{row.start_date}</TableCell>
-        <TableCell sx={{ borderBottom: 'none' }}>{row.end_date}</TableCell>
+        <TableCell sx={borderBottom}>{row.name}</TableCell>
+        <TableCell sx={borderBottom}>{row.internal_name}</TableCell>
+        <TableCell sx={borderBottom}>{row.domain}</TableCell>
+        <TableCell sx={borderBottom}>{row.start_date}</TableCell>
+        <TableCell sx={borderBottom}>{row.end_date}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell colSpan={4}>
+        <TableCell colSpan={5}>
           <Typography sx={{ color: 'text.secondary', mb: 2, fontSize: '14px' }}>
             {row.description}
           </Typography>
