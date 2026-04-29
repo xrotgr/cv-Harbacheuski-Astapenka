@@ -24,7 +24,7 @@ export const Row = ({ row }: RowProps) => {
           </Typography>
           <div>
             {row.environment.map((label) => (
-              <Chip key={row.id} variant="outlined" size="small" label={label} sx={{ mr: 2 }} />
+              <Chip key={label} variant="outlined" size="small" label={label} sx={{ mr: 2 }} />
             ))}
           </div>
         </TableCell>
