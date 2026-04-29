@@ -5,10 +5,10 @@ import { EmployeeTabs } from '@/widgets/EmployeeTabs';
 
 interface EmployeeTabsProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     id: string;
     locale: string;
-  };
+  }>;
 }
 
 export default async function EmployeeLayout({ children, params }: EmployeeTabsProps) {

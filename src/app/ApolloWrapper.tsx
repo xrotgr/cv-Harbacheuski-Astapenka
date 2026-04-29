@@ -42,6 +42,7 @@ function makeClient() {
 
   const authLink = setContext(async (_, { headers }) => {
     const token = await getAccessToken();
+
     return {
       headers: {
         ...headers,
