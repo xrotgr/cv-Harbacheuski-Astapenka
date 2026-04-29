@@ -25,17 +25,12 @@ export const GET_PROFILE = gql`
   }
 `;
 
-export const GET_DEPARTMENTS = gql`
-  query GetDepartments {
+export const GET_PROFILE_OPTIONS = gql`
+  query GetProfileOptions {
     departments {
       id
       name
     }
-  }
-`;
-
-export const GET_POSITIONS = gql`
-  query GetPositions {
     positions {
       id
       name
@@ -43,8 +38,8 @@ export const GET_POSITIONS = gql`
   }
 `;
 
-export const UPDATE_PROFILE = gql`
-  mutation UpdateProfile($profile: UpdateProfileInput!) {
+export const UPDATE_PROFILE_AND_USER = gql`
+  mutation UpdateProfileAndUser($profile: UpdateProfileInput!, $user: UpdateUserInput!) {
     updateProfile(profile: $profile) {
       id
       created_at
@@ -53,11 +48,6 @@ export const UPDATE_PROFILE = gql`
       full_name
       avatar
     }
-  }
-`;
-
-export const UPDATE_USER = gql`
-  mutation UpdateUser($user: UpdateUserInput!) {
     updateUser(user: $user) {
       id
       department_name

@@ -1,3 +1,6 @@
+'use client';
+
+import { useQuery } from '@apollo/client/react';
 import LogoutRounded from '@mui/icons-material/LogoutRounded';
 import PersonOutlineRounded from '@mui/icons-material/PersonOutlineRounded';
 import SettingsOutlined from '@mui/icons-material/SettingsOutlined';
@@ -15,6 +18,7 @@ import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
+import { GET_PROFILE } from '@/feature/profile';
 import { Link } from '@/i18n/navigation';
 
 import { styles } from './UserMenu.styles';
@@ -25,11 +29,28 @@ interface UserMenuProps {
   open: boolean;
 }
 
+interface UserMenuProfileData {
+  user: {
+    profile: {
+      full_name: string | null;
+      avatar: string | null;
+    };
+  };
+}
+
 export const UserMenu = ({ email, userId, open }: UserMenuProps) => {
   const t = useTranslations('sidebar');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
   const profileHref = `/users/${userId}/profile`;
+  const { data } = useQuery<UserMenuProfileData>(GET_PROFILE, {
+    variables: { userId },
+    skip: !userId,
+  });
+  const fullName = data?.user?.profile?.full_name?.trim();
+  const avatarUrl = data?.user?.profile?.avatar;
+  const userLabel = fullName || email;
+  const avatarFallback = (userLabel?.[0] ?? 'U').toUpperCase();
 
   const openMenu = (e: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
@@ -45,10 +66,12 @@ export const UserMenu = ({ email, userId, open }: UserMenuProps) => {
   return (
     <>
       <Box sx={styles.footerUser} onClick={openMenu}>
-        <Avatar sx={styles.footerAvatar}>{(email?.[0] ?? 'U').toUpperCase()}</Avatar>
+        <Avatar src={avatarUrl || undefined} sx={styles.footerAvatar}>
+          {avatarFallback}
+        </Avatar>
         {open && (
           <Typography variant="body2" sx={styles.avatarTypography}>
-            {email}
+            {userLabel}
           </Typography>
         )}
       </Box>

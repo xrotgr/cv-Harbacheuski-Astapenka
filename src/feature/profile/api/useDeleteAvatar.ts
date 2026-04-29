@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client/react';
 
-import { DELETE_AVATAR } from './documents';
+import { DELETE_AVATAR, GET_PROFILE } from './documents';
 
 type DeleteAvatarMutationResult = {
   deleteAvatar: null;
@@ -26,6 +26,8 @@ export const useDeleteAvatar = () => {
       variables: {
         avatar: { userId },
       },
+      refetchQueries: [{ query: GET_PROFILE, variables: { userId } }],
+      awaitRefetchQueries: true,
     });
   };
 

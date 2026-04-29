@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client/react';
 
 import { fileToBase64 } from '../lib';
 
-import { UPLOAD_AVATAR } from './documents';
+import { GET_PROFILE, UPLOAD_AVATAR } from './documents';
 
 type UploadAvatarMutationResult = {
   uploadAvatar: string;
@@ -38,6 +38,8 @@ export const useUploadAvatar = () => {
           type: file.type,
         },
       },
+      refetchQueries: [{ query: GET_PROFILE, variables: { userId } }],
+      awaitRefetchQueries: true,
     });
 
     if (!data?.uploadAvatar) {
