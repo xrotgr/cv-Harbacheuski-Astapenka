@@ -34,6 +34,11 @@
     "cancel": "CANCEL",
     "search": "Search"
   },
+  "TableNoResults": {
+    "noResultsFound": "No results found",
+    "hint": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
+  },
   "UsersTable": {
     "firstName": "First Name",
     "lastName": "Last Name",

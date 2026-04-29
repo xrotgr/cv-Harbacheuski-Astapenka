@@ -1,4 +1,5 @@
 import { Box, Button, TableCell, TableRow, Typography } from '@mui/material';
+import { useTranslations } from 'next-intl';
 
 interface EmptyTableStateProps {
   colSpan: number;
@@ -6,6 +7,8 @@ interface EmptyTableStateProps {
 }
 
 export const EmptyTableState = ({ colSpan, onReset }: EmptyTableStateProps) => {
+  const t = useTranslations('TableNoResults');
+
   return (
     <TableRow sx={{ height: '100%' }}>
       <TableCell colSpan={colSpan} sx={{ height: '100%' }}>
@@ -18,9 +21,9 @@ export const EmptyTableState = ({ colSpan, onReset }: EmptyTableStateProps) => {
             gap: 3,
           }}
         >
-          <Typography variant="h5">No results found</Typography>
-          <Typography>Try another search, check the spelling or use a broader term</Typography>
-          <Button onClick={onReset}>RESET SEARCH</Button>
+          <Typography variant="h5">{t('noResultsFound')}</Typography>
+          <Typography>{t('hint')}</Typography>
+          <Button onClick={onReset}>{t('resetSearch').toUpperCase()}</Button>
         </Box>
       </TableCell>
     </TableRow>
