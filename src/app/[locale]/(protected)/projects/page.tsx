@@ -1,50 +1,30 @@
-import { gql } from '@apollo/client';
+'use client';
 
-import { query } from '@/app/ApolloClient';
+import { Box, Typography } from '@mui/material';
+import { Suspense, useState } from 'react';
 
-//TODO: test component
-export const GET_PROJECTS = gql`
-  query GetProjects {
-    projects {
-      id
-      name
-      internal_name
-      domain
-      start_date
-      end_date
-      description
-      environment
-    }
-  }
-`;
+import { TableWrapper } from '@/entities/Project/ui/Table/TableWrapper';
+import SearchBar from '@/shared/ui/search/SearchBar';
+import { Spinner } from '@/shared/ui/Spinner/Spinner';
 
-interface Project {
-  id: string;
-  name: string;
-  internal_name: string;
-  domain: string;
-  start_date: string | null;
-  end_date: string | null;
-  description: string | null;
-  environment: string | null;
-}
-interface GetProjectsResponse {
-  projects: Project[];
-}
+export default function Page() {
+  const [searchValue, setSearchValue] = useState('');
 
-export default async function ProjectsPage() {
-  const { data, error } = await query<GetProjectsResponse>({
-    query: GET_PROJECTS,
-  });
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
 
-  if (error) {
-    return <div>Failed to load projects</div>;
-  }
+  const handleInputReset = () => {
+    setSearchValue('');
+  };
 
   return (
-    <div>
-      <h1>Projects</h1>
-      <div>{JSON.stringify(data?.projects ?? [], null, 2)}</div>
-    </div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Typography sx={{ color: 'text.secondary' }}>Projects</Typography>
+      <SearchBar value={searchValue} onChange={handleInputChange} />
+      <Suspense fallback={<Spinner />}>
+        <TableWrapper searchValue={searchValue} handleInputReset={handleInputReset} />
+      </Suspense>
+    </Box>
   );
 }

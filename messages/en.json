@@ -47,12 +47,25 @@
       }
     }
   },
+  "TableNoResults": {
+    "noResultsFound": "No results found",
+    "hint": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
+  },
   "UsersTable": {
     "firstName": "First Name",
     "lastName": "Last Name",
     "email": "Email",
     "department": "Department",
     "position": "Position"
+  },
+  "ProjectsTable": {
+    "name": "Name",
+    "internal_name": "Internal name",
+    "domain": "Domain",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "tillNow": "Till now"
   },
   "Settings": {
     "appearance": "Appearance",
