@@ -32,7 +32,20 @@
   },
   "common": {
     "cancel": "CANCEL",
+    "update": "UPDATE",
     "search": "Search"
+  },
+  "profile": {
+    "avatar": {
+      "uploadButton": "Upload avatar image",
+      "uploadHint": "png, jpg or gif no more than 0.5MB",
+      "errors": {
+        "unsupportedFormat": "Only png, jpg, gif are allowed",
+        "fileTooLarge": "File size must be <= 0.5MB",
+        "uploadFailed": "Failed to upload avatar",
+        "deleteFailed": "Failed to delete avatar"
+      }
+    }
   },
   "TableNoResults": {
     "noResultsFound": "No results found",
