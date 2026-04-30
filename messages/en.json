@@ -46,5 +46,24 @@
     "light": "Light",
     "dark": "Dark",
     "deviceSettings": "Device settings"
+  },
+  "Skills": {
+    "pageTitle": "Skills",
+    "addSkill": "ADD SKILL",
+    "removeSkills": "REMOVE SKILLS",
+    "addSkillTitle": "Add skill",
+    "skill": "Skill",
+    "skillMastery": "Skill mastery",
+    "cancel": "CANCEL",
+    "confirm": "CONFIRM",
+    "noSkillsFound": "No skills found",
+    "errorWithMessage": "Error: {message}",
+    "mastery": {
+      "Novice": "Novice",
+      "Advanced": "Advanced",
+      "Competent": "Competent",
+      "Proficient": "Proficient",
+      "Expert": "Expert"
+    }
   }
 }

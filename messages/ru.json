@@ -46,5 +46,24 @@
     "light": "Светлый",
     "dark": "Тёмный",
     "deviceSettings": "Настройки устройства"
+  },
+  "Skills": {
+    "pageTitle": "Навыки",
+    "addSkill": "ДОБАВИТЬ НАВЫК",
+    "removeSkills": "УДАЛИТЬ НАВЫКИ",
+    "addSkillTitle": "Добавить навык",
+    "skill": "Навык",
+    "skillMastery": "Уровень навыка",
+    "cancel": "ОТМЕНА",
+    "confirm": "ПОДТВЕРДИТЬ",
+    "noSkillsFound": "Навыки не найдены",
+    "errorWithMessage": "Ошибка: {message}",
+    "mastery": {
+      "Novice": "Начальный",
+      "Advanced": "Продвинутый",
+      "Competent": "Уверенный",
+      "Proficient": "Профессиональный",
+      "Expert": "Эксперт"
+    }
   }
 }
