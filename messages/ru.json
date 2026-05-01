@@ -67,6 +67,11 @@
     "end_date": "Дата окончания",
     "tillNow": "По настоящее время"
   },
+  "CvsTable": {
+    "name": "Имя",
+    "education": "Образование",
+    "employee": "Сотрудник"
+  },
   "Settings": {
     "appearance": "Внешний вид",
     "light": "Светлый",

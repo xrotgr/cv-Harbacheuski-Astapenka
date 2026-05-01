@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 
 import { authOptions } from '@/auth';
+import { UserProvider } from '@/UserProvider/UserContext';
 import { Sidebar } from '@/widgets';
 
 import { styles } from './layout.styles';
@@ -20,10 +21,14 @@ export default async function ProtectedLayout({
   if (!session) {
     redirect('/auth/login');
   }
+  const user = session.user;
+
   return (
-    <Box sx={styles.wrapper}>
-      <Sidebar email={email} userId={userId} />
-      <Box sx={styles.content}>{children}</Box>
-    </Box>
+    <UserProvider value={user}>
+      <Box sx={styles.wrapper}>
+        <Sidebar email={email} userId={userId} />
+        <Box sx={styles.content}>{children}</Box>
+      </Box>
+    </UserProvider>
   );
 }
