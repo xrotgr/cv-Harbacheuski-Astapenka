@@ -15,9 +15,6 @@ export default async function ProtectedLayout({
 }>) {
   const session = await getServerSession(authOptions);
 
-  const email = session?.user?.email ?? '';
-  const userId = session?.user?.id ?? '';
-
   if (!session) {
     redirect('/auth/login');
   }
@@ -26,7 +23,7 @@ export default async function ProtectedLayout({
   return (
     <UserProvider value={user}>
       <Box sx={styles.wrapper}>
-        <Sidebar email={email} userId={userId} />
+        <Sidebar />
         <Box sx={styles.content}>{children}</Box>
       </Box>
     </UserProvider>

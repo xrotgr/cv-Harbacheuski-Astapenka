@@ -12,12 +12,7 @@ import { useNavigation } from '../model';
 import { styles } from './Sidebar.styles';
 import { SidebarItem } from './SidebarItem/SidebarItem';
 
-interface SidebarProps {
-  email: string;
-  userId: string;
-}
-
-export const Sidebar = ({ email, userId }: SidebarProps) => {
+export const Sidebar = () => {
   const t = useTranslations('sidebar');
   const { selectedPath, items } = useNavigation();
   const [open, setOpen] = useState(true);
@@ -37,7 +32,7 @@ export const Sidebar = ({ email, userId }: SidebarProps) => {
       </List>
 
       <Box sx={styles.footer}>
-        <UserMenu email={email} userId={userId} open={open} />
+        <UserMenu open={open} />
 
         <IconButton onClick={() => setOpen((prev) => !prev)} sx={styles.toggleButton}>
           {open ? <ChevronLeft /> : <ChevronRight />}

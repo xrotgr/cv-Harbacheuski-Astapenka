@@ -6,6 +6,7 @@ declare module 'next-auth' {
     error?: string;
     user: DefaultSession['user'] & {
       id: string;
+      email: string;
     };
   }
 }

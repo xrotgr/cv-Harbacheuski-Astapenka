@@ -5,6 +5,7 @@ import { createContext, useContext } from 'react';
 
 type User = DefaultSession['user'] & {
   id: string;
+  email: string;
 };
 
 export const UserProvider = createContext<User | null>(null);

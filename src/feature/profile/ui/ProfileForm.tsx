@@ -2,12 +2,13 @@
 
 import { useMutation, useQuery } from '@apollo/client/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import type { User } from 'cv-graphql';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import { FormHOC, FormSelect, FormTextField } from '@/shared/ui';
+import { Spinner } from '@/shared/ui/Spinner/Spinner';
 
 import { GET_PROFILE, GET_PROFILE_OPTIONS, UPDATE_PROFILE_AND_USER } from '../api';
 import { ProfileFormValues, ProfileSchema } from '../module/schema';
@@ -74,19 +75,7 @@ export const ProfileForm = ({ userId, canEdit }: ProfileFormProps) => {
     avatarUrl: user?.profile.avatar || '',
   };
 
-  if (loadingProfile || loadingOptions)
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: 240,
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+  if (loadingProfile || loadingOptions) return <Spinner />;
 
   if (profileError || optionsError || !user) {
     return <div>Failed to load profile</div>;
