@@ -2,11 +2,10 @@
 import { Box, Typography } from '@mui/material';
 import { Suspense, useState } from 'react';
 
+import { CreateCvButton } from '@/entities/Cvs/ui/CvFormDialog/CreateCvFormDialog';
 import { TableWrapper } from '@/entities/Cvs/ui/Table/TableWrapper';
 import SearchBar from '@/shared/ui/search/SearchBar';
 import { Spinner } from '@/shared/ui/Spinner/Spinner';
-
-import { CreateCvButton } from '@/entities/Cvs/ui/FormDialog/CreateCvFormDialog';
 
 export const TablePageWrapper = () => {
   const [searchValue, setSearchValue] = useState('');
