@@ -15,14 +15,14 @@ export const Row = ({ row }: RowProps) => {
         <TableCell sx={borderBottom}>{row.name}</TableCell>
         <TableCell sx={borderBottom}>{row.education}</TableCell>
         <TableCell sx={borderBottom}>{row.employee}</TableCell>
-        <TableCell sx={borderBottom}>
+        <TableCell align="center" sx={borderBottom}>
           <IconButton>
             <MoreVertIcon />
           </IconButton>
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell colSpan={2}>
+        <TableCell colSpan={4}>
           <Typography sx={{ color: 'text.secondary', mb: 2, fontSize: '14px' }}>
             {row.description}
           </Typography>
