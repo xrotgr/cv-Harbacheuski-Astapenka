@@ -6,7 +6,9 @@ import { useId, useState } from 'react';
 
 import { Link } from '@/i18n/navigation';
 
-export const TableRowDetailsButton = ({ rowId }: { rowId: string }) => {
+import { DeleteCvDialog } from '../DeleteCvDialog/DeleteCvDialog';
+
+export const TableRowDetailsButton = ({ rowId, rowName }: { rowId: string; rowName: string }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -45,7 +47,7 @@ export const TableRowDetailsButton = ({ rowId }: { rowId: string }) => {
         <MenuItem component={Link} href={`/cvs/${rowId}/details`} onClick={handleClose}>
           Details
         </MenuItem>
-        <MenuItem onClick={handleClose}>Delete CV</MenuItem>
+        <DeleteCvDialog cvId={rowId} cvName={rowName} />
       </Menu>
     </div>
   );

@@ -17,7 +17,7 @@ export const Row = ({ row }: RowProps) => {
         <TableCell sx={borderBottom}>{row.education}</TableCell>
         <TableCell sx={borderBottom}>{row.employee}</TableCell>
         <TableCell align="center" sx={borderBottom}>
-          <TableRowDetailsButton rowId={row.id} />
+          <TableRowDetailsButton rowId={row.id} rowName={row.name} />
         </TableCell>
       </TableRow>
       <TableRow>
