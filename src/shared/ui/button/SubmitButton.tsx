@@ -1,12 +1,15 @@
-import { Button } from '@mui/material';
+'use client';
+
+import { Button, SxProps } from '@mui/material';
 import { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 interface SubmitButtonProps {
   children: ReactNode;
+  sx?: SxProps;
 }
 
-export const SubmitButton = ({ children }: SubmitButtonProps) => {
+export const SubmitButton = ({ children, sx }: SubmitButtonProps) => {
   const {
     formState: { isDirty, isSubmitting },
   } = useFormContext();
@@ -17,7 +20,7 @@ export const SubmitButton = ({ children }: SubmitButtonProps) => {
       variant="contained"
       size="large"
       disabled={!isDirty || isSubmitting}
-      sx={{ px: 10, borderRadius: 5 }}
+      sx={sx}
     >
       {children}
     </Button>

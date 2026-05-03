@@ -61,7 +61,7 @@ export const CreateCvButton = () => {
             >
               Cancel
             </Button>
-            <SubmitButton>CREATE</SubmitButton>
+            <SubmitButton sx={{ px: 10, borderRadius: 5 }}>CREATE</SubmitButton>
           </DialogActions>
         </FormHOC>
       </Dialog>

@@ -1,9 +1,10 @@
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { IconButton, TableCell, TableRow, Typography } from '@mui/material';
+import { TableCell, TableRow, Typography } from '@mui/material';
 import { Cv } from 'cv-graphql';
 
+import { TableRowDetailsButton } from './TableRowDetailsButton';
+
 interface RowProps {
-  row: Pick<Cv, 'name' | 'education' | 'description'> & { employee: string };
+  row: Pick<Cv, 'id' | 'name' | 'education' | 'description'> & { employee: string };
 }
 
 const borderBottom = { borderBottom: 'none' };
@@ -16,9 +17,7 @@ export const Row = ({ row }: RowProps) => {
         <TableCell sx={borderBottom}>{row.education}</TableCell>
         <TableCell sx={borderBottom}>{row.employee}</TableCell>
         <TableCell align="center" sx={borderBottom}>
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
+          <TableRowDetailsButton rowId={row.id} />
         </TableCell>
       </TableRow>
       <TableRow>
