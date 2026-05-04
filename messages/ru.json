@@ -31,8 +31,30 @@
     "logout": "Выйти"
   },
   "common": {
+    "confirm": "Подтвердить",
     "cancel": "ОТМЕНА",
-    "search": "Поиск"
+    "create": "Создать",
+    "update": "ОБНОВИТЬ",
+    "delete": "Удалить",
+    "search": "Поиск",
+    "cv": "Резюме"
+  },
+  "profile": {
+    "avatar": {
+      "uploadButton": "Загрузить аватар",
+      "uploadHint": "png, jpg или gif не больше 0.5MB",
+      "errors": {
+        "unsupportedFormat": "Разрешены только png, jpg, gif",
+        "fileTooLarge": "Размер файла должен быть <= 0.5MB",
+        "uploadFailed": "Не удалось загрузить аватар",
+        "deleteFailed": "Не удалось удалить аватар"
+      }
+    }
+  },
+  "TableNoResults": {
+    "noResultsFound": "Результатов не найдено",
+    "hint": "Попробуйте другой поиск, проверьте написание или используйте более общий запрос",
+    "resetSearch": "Сбросить поиск"
   },
   "UsersTable": {
     "firstName": "Имя",
@@ -40,6 +62,20 @@
     "email": "Почта",
     "department": "Отдел",
     "position": "Должность"
+  },
+  "ProjectsTable": {
+    "name": "Имя",
+    "internal_name": "Внутреннее имя",
+    "domain": "Домен",
+    "start_date": "Дата начала",
+    "end_date": "Дата окончания",
+    "tillNow": "По настоящее время"
+  },
+  "CvsTable": {
+    "name": "Имя",
+    "education": "Образование",
+    "employee": "Сотрудник",
+    "description": "Описание"
   },
   "Settings": {
     "appearance": "Внешний вид",
@@ -71,5 +107,18 @@
       "Proficient": "Профессиональный",
       "Expert": "Эксперт"
     }
+  },
+  "CvTabs": {
+    "details": "Подробости",
+    "skills": "Навыки",
+    "projects": "Проекты",
+    "preview": "Просмотр"
+  },
+  "MenuItems": {
+    "details": "Подробнее",
+    "delete": "Удалить"
+  },
+  "DeleteCvDialog": {
+    "assuranceMessage": "Вы уверены, что хотите удалить резюме "
   }
 }

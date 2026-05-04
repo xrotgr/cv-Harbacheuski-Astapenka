@@ -31,8 +31,30 @@
     "logout": "Logout"
   },
   "common": {
+    "confirm": "Confirm",
     "cancel": "CANCEL",
-    "search": "Search"
+    "create": "Create",
+    "update": "UPDATE",
+    "delete": "Delete",
+    "search": "Search",
+    "cv": "CV"
+  },
+  "profile": {
+    "avatar": {
+      "uploadButton": "Upload avatar image",
+      "uploadHint": "png, jpg or gif no more than 0.5MB",
+      "errors": {
+        "unsupportedFormat": "Only png, jpg, gif are allowed",
+        "fileTooLarge": "File size must be <= 0.5MB",
+        "uploadFailed": "Failed to upload avatar",
+        "deleteFailed": "Failed to delete avatar"
+      }
+    }
+  },
+  "TableNoResults": {
+    "noResultsFound": "No results found",
+    "hint": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
   },
   "UsersTable": {
     "firstName": "First Name",
@@ -40,6 +62,20 @@
     "email": "Email",
     "department": "Department",
     "position": "Position"
+  },
+  "ProjectsTable": {
+    "name": "Name",
+    "internal_name": "Internal name",
+    "domain": "Domain",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "tillNow": "Till now"
+  },
+  "CvsTable": {
+    "name": "Name",
+    "education": "Education",
+    "employee": "Employee",
+    "description": "Description"
   },
   "Settings": {
     "appearance": "Appearance",
@@ -71,5 +107,17 @@
       "Proficient": "Proficient",
       "Expert": "Expert"
     }
+  },
+  "CvTabs": {
+    "details": "Details",
+    "skills": "Skills",
+    "projects": "Projects",
+    "preview": "Preview"
+  },
+  "MenuItems": {
+    "details": "Details"
+  },
+  "DeleteCvDialog": {
+    "assuranceMessage": "Are you sure you want to delete CV"
   }
 }

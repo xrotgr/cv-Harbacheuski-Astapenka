@@ -22,5 +22,5 @@ export const sidebarItems: SidebarItemConfig[] = [
   { labelKey: 'employees', icon: <PeopleIcon />, path: '/users' },
   { labelKey: 'skills', icon: <TrendingUpIcon />, path: '/skills' },
   { labelKey: 'languages', icon: <TranslateIcon />, path: '/languages' },
-  { labelKey: 'cv', icon: <DescriptionIcon />, path: '/projects' },
+  { labelKey: 'cv', icon: <DescriptionIcon />, path: '/cvs' },
 ];

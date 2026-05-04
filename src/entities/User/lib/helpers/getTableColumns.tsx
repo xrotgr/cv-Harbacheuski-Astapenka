@@ -28,7 +28,7 @@ export const getTableColumns = (t: (key: string) => string) => [
     headerName: '',
     width: 100,
     renderCell: (params: GridRenderCellParams) => (
-      <IconButton component={Link} href={`users/${params.row.id}`}>
+      <IconButton component={Link} href={`users/${params.row.id}/profile`}>
         <KeyboardArrowRightIcon />
       </IconButton>
     ),
