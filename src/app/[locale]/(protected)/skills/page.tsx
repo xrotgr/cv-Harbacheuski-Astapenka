@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { Mastery } from 'cv-graphql';
 import { getServerSession } from 'next-auth';
 import { getTranslations } from 'next-intl/server';
 
@@ -6,6 +7,7 @@ import { query } from '@/app/ApolloClient';
 import { authOptions } from '@/auth';
 import { GET_USER_PROFILE_SKILLS } from '@/feature/skills/api/documents';
 import { SkillsProfileActions } from '@/feature/skills/ui';
+import { SkillLevel } from '@/feature/skills/ui/SkillLevel/SkillLevel';
 import { AppBreadcrumbs } from '@/shared/ui';
 
 type ProfileSkill = {
@@ -42,7 +44,7 @@ export default async function SkillsPage() {
           {skills.length > 0
             ? skills.map((skill) => (
                 <div key={`${skill.name}-${skill.categoryId}`}>
-                  {skill.name} ({skill.mastery})
+                  <SkillLevel label={skill.name} mastery={skill.mastery as Mastery} />
                 </div>
               ))
             : t('noSkillsFound')}
