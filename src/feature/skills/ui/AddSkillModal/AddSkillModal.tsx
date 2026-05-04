@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
+  FormHelperText,
   IconButton,
   InputLabel,
   ListSubheader,
@@ -25,7 +26,12 @@ import {
   GET_SKILLS_AND_CATEGORIES,
   GET_USER_PROFILE_SKILLS,
 } from '@/feature/skills/api/documents';
-import { buildGroupedSkillsCatalog, type SkillsCatalogData } from '@/feature/skills/lib';
+import {
+  buildGroupedSkillsCatalog,
+  catalogSkillToSelectionKey,
+  skillToSelectionKey,
+  type SkillsCatalogData,
+} from '@/feature/skills/lib';
 import { CustomSelect } from '@/shared/ui';
 
 import { MASTERY_OPTIONS } from '../../modal';
@@ -48,17 +54,61 @@ interface AddProfileSkillMutationVariables {
   skill: AddProfileSkillInput;
 }
 
+type ProfileSkillsForFilter = {
+  user: {
+    profile: {
+      skills: { name: string; categoryId?: string | null }[];
+    };
+  } | null;
+};
+
 export const AddSkillModal = ({ userId, open, onClose }: AddSkillModalProps) => {
   const t = useTranslations('Skills');
   const [skillId, setSkillId] = useState('');
   const [mastery, setMastery] = useState<Mastery>(Mastery.Novice);
   const { data } = useQuery<SkillsCatalogData>(GET_SKILLS_AND_CATEGORIES);
+  const { data: profileSkillsData, loading: profileSkillsLoading } =
+    useQuery<ProfileSkillsForFilter>(GET_USER_PROFILE_SKILLS, {
+      variables: { userId },
+      skip: !open || !userId,
+    });
   const [addProfileSkill, { loading: isSubmitting }] = useMutation<
     AddProfileSkillMutationResponse,
     AddProfileSkillMutationVariables
   >(ADD_PROFILE_SKILL);
 
-  const groupedData = useMemo(() => buildGroupedSkillsCatalog(data), [data]);
+  const isProfileSkillsPending =
+    open && Boolean(userId) && profileSkillsLoading && !profileSkillsData;
+
+  const catalogDataWithoutAssigned = useMemo(() => {
+    if (!data) {
+      return undefined;
+    }
+    if (isProfileSkillsPending) {
+      return { ...data, skills: [] };
+    }
+    const assignedKeys = new Set(
+      (profileSkillsData?.user?.profile?.skills ?? []).map((s) =>
+        skillToSelectionKey({ name: s.name, categoryId: s.categoryId ?? null })
+      )
+    );
+    const skills = data.skills.filter(
+      (skill) => !assignedKeys.has(catalogSkillToSelectionKey(skill))
+    );
+    return { ...data, skills };
+  }, [data, isProfileSkillsPending, profileSkillsData]);
+
+  const groupedData = useMemo(
+    () => buildGroupedSkillsCatalog(catalogDataWithoutAssigned),
+    [catalogDataWithoutAssigned]
+  );
+
+  const resolvedSkillId = useMemo(() => {
+    if (!skillId) {
+      return '';
+    }
+    return groupedData.skills.some((s) => s.id === skillId) ? skillId : '';
+  }, [groupedData.skills, skillId]);
 
   const handleSkillChange = (event: SelectChangeEvent) => {
     setSkillId(event.target.value);
@@ -75,7 +125,7 @@ export const AddSkillModal = ({ userId, open, onClose }: AddSkillModalProps) => 
   };
 
   const handleConfirm = async () => {
-    const selectedSkill = groupedData.skills.find((skill) => skill.id === skillId);
+    const selectedSkill = groupedData.skills.find((skill) => skill.id === resolvedSkillId);
     if (!selectedSkill || !userId) {
       return;
     }
@@ -96,7 +146,9 @@ export const AddSkillModal = ({ userId, open, onClose }: AddSkillModalProps) => 
     handleClose();
   };
 
-  const isConfirmDisabled = !skillId || !userId || isSubmitting;
+  const hasAvailableSkills = groupedData.skills.length > 0;
+  const isConfirmDisabled =
+    !resolvedSkillId || !userId || isSubmitting || !hasAvailableSkills || isProfileSkillsPending;
   const masteryOptions = MASTERY_OPTIONS.map((option) => ({
     value: option as Mastery,
     text: t(`mastery.${option}`),
@@ -116,9 +168,11 @@ export const AddSkillModal = ({ userId, open, onClose }: AddSkillModalProps) => 
             <InputLabel id="skill-select-label">{t('skill')}</InputLabel>
             <Select
               labelId="skill-select-label"
-              value={skillId}
+              value={hasAvailableSkills ? resolvedSkillId : ''}
               label={t('skill')}
               onChange={handleSkillChange}
+              disabled={!hasAvailableSkills || isProfileSkillsPending}
+              displayEmpty
               MenuProps={{ slotProps: { paper: { sx: styles.menuPaper } } }}
             >
               {groupedData.skillCategories.flatMap((category) => {
@@ -141,6 +195,11 @@ export const AddSkillModal = ({ userId, open, onClose }: AddSkillModalProps) => 
                 ];
               })}
             </Select>
+            {isProfileSkillsPending ? (
+              <FormHelperText>{t('loadingProfileSkills')}</FormHelperText>
+            ) : !hasAvailableSkills ? (
+              <FormHelperText>{t('noUnassignedSkills')}</FormHelperText>
+            ) : null}
           </FormControl>
 
           <CustomSelect
@@ -148,6 +207,7 @@ export const AddSkillModal = ({ userId, open, onClose }: AddSkillModalProps) => 
             value={mastery}
             options={masteryOptions}
             onChange={handleMasteryChange}
+            disabled={isProfileSkillsPending || !hasAvailableSkills}
           />
 
           <Box sx={styles.actions}>

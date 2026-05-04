@@ -1,19 +1,21 @@
 'use client';
 
 import { useQuery } from '@apollo/client/react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Checkbox, CircularProgress, Typography } from '@mui/material';
 import { Mastery, SkillCategory, SkillMastery } from 'cv-graphql';
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import { GET_USER_PROFILE_SKILLS } from '@/feature/skills/api/documents';
-import { groupProfileSkillsByCategory } from '@/feature/skills/lib';
+import { groupProfileSkillsByCategory, skillToSelectionKey } from '@/feature/skills/lib';
 
 import { SkillLevel } from '../SkillLevel/SkillLevel';
 
 import { styles } from './ProfileSkillsGrouped.styles';
 
 const UNCATEGORIZED_SECTION_ID = '__uncategorized__';
+
+const EMPTY_SELECTED_KEYS = new Set<string>();
 
 type GetUserProfileSkillsData = {
   user: {
@@ -27,9 +29,17 @@ type GetUserProfileSkillsData = {
 
 interface ProfileSkillsGroupedProps {
   userId: string;
+  removalMode?: boolean;
+  selectedKeys?: Set<string>;
+  onToggleSkillKey?: (key: string) => void;
 }
 
-export const ProfileSkillsGrouped = ({ userId }: ProfileSkillsGroupedProps) => {
+export const ProfileSkillsGrouped = ({
+  userId,
+  removalMode = false,
+  selectedKeys = EMPTY_SELECTED_KEYS,
+  onToggleSkillKey,
+}: ProfileSkillsGroupedProps) => {
   const t = useTranslations('Skills');
   const { data, loading, error } = useQuery<GetUserProfileSkillsData>(GET_USER_PROFILE_SKILLS, {
     variables: { userId },
@@ -78,11 +88,33 @@ export const ProfileSkillsGrouped = ({ userId }: ProfileSkillsGroupedProps) => {
           <Box key={section.id} component="section" sx={styles.section}>
             <Typography sx={styles.sectionTitle}>{title}</Typography>
             <Box sx={styles.skillsGrid}>
-              {section.skills.map((skill) => (
-                <Box key={`${section.id}-${skill.name}`} sx={styles.skillCell}>
-                  <SkillLevel label={skill.name} mastery={skill.mastery as Mastery} />
-                </Box>
-              ))}
+              {section.skills.map((skill) => {
+                const key = skillToSelectionKey(skill);
+                const checked = selectedKeys.has(key);
+
+                return (
+                  <Box
+                    key={key}
+                    sx={[styles.skillRow, removalMode && styles.skillRowRemoval, styles.skillCell]}
+                  >
+                    <Checkbox
+                      size="small"
+                      checked={checked}
+                      onChange={() => onToggleSkillKey?.(key)}
+                      slotProps={{
+                        input: {
+                          'aria-label': t('selectSkillForRemoval', { name: skill.name }),
+                        },
+                      }}
+                      sx={[
+                        styles.skillSelectCheckbox,
+                        removalMode && styles.skillSelectCheckboxVisible,
+                      ]}
+                    />
+                    <SkillLevel label={skill.name} mastery={skill.mastery as Mastery} />
+                  </Box>
+                );
+              })}
             </Box>
           </Box>
         );

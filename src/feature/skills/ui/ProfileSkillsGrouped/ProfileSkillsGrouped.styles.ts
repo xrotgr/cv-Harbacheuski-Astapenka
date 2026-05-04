@@ -37,6 +37,34 @@ export const styles = {
     width: '100%',
   },
 
+  skillRow: {
+    position: 'relative',
+    minWidth: 0,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    pl: 0,
+    transition: 'padding-left 0.15s ease',
+  },
+
+  skillRowRemoval: {
+    pl: 4,
+  },
+
+  skillSelectCheckbox: {
+    position: 'absolute',
+    left: -4,
+    top: '50%',
+    transform: 'translateY(-50%)',
+    display: 'none',
+    p: 0.25,
+    zIndex: 1,
+  },
+
+  skillSelectCheckboxVisible: {
+    display: 'inline-flex',
+  },
+
   emptyState: {
     color: 'text.secondary',
     fontSize: 15,

@@ -56,3 +56,11 @@ export const ADD_PROFILE_SKILL = gql`
     }
   }
 `;
+
+export const DELETE_PROFILE_SKILLS = gql`
+  mutation DeleteProfileSkills($skill: DeleteProfileSkillInput!) {
+    deleteProfileSkill(skill: $skill) {
+      id
+    }
+  }
+`;

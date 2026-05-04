@@ -12,17 +12,23 @@ import { styles } from './SkillsProfileActions.styles';
 
 interface SkillsProfileActionsProps {
   userId: string;
+  removeButtonLabel: string;
+  onRemoveClick: () => void;
+  removeButtonDisabled?: boolean;
 }
 
-export const SkillsProfileActions = ({ userId }: SkillsProfileActionsProps) => {
+export const SkillsProfileActions = ({
+  userId,
+  removeButtonLabel,
+  onRemoveClick,
+  removeButtonDisabled = false,
+}: SkillsProfileActionsProps) => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const t = useTranslations('Skills');
 
   function handleAdd(): void {
     setAddModalOpen(true);
   }
-
-  function handleRemove(): void {}
 
   return (
     <>
@@ -32,12 +38,13 @@ export const SkillsProfileActions = ({ userId }: SkillsProfileActionsProps) => {
         </Button>
 
         <Button
-          onClick={handleRemove}
+          onClick={onRemoveClick}
           startIcon={<DeleteForeverIcon />}
           variant="text"
           sx={styles.removeButton}
+          disabled={removeButtonDisabled}
         >
-          {t('removeSkills')}
+          {removeButtonLabel}
         </Button>
       </Box>
       <AddSkillModal userId={userId} open={isAddModalOpen} onClose={() => setAddModalOpen(false)} />

@@ -57,7 +57,12 @@
     "cancel": "ОТМЕНА",
     "confirm": "ПОДТВЕРДИТЬ",
     "noSkillsFound": "Навыки не найдены",
+    "noUnassignedSkills": "Все навыки уже добавлены в профиль",
+    "loadingProfileSkills": "Загрузка навыков профиля…",
     "otherSkills": "Прочее",
+    "deleteSelectedSkills": "УДАЛИТЬ ВЫБРАННЫЕ ({count})",
+    "exitSkillSelection": "ОТМЕНА",
+    "selectSkillForRemoval": "Выбрать {name} для удаления",
     "errorWithMessage": "Ошибка: {message}",
     "mastery": {
       "Novice": "Начальный",
