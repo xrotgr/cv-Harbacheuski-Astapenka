@@ -15,6 +15,7 @@ interface CustomSelectProps<T> {
   value: T;
   options: SelectOption<T>[];
   onChange: (event: SelectChangeEvent<T>, child?: React.ReactNode) => void;
+  disabled?: boolean;
 }
 
 export const CustomSelect = <T extends string>({
@@ -22,11 +23,12 @@ export const CustomSelect = <T extends string>({
   value,
   options,
   onChange,
+  disabled = false,
 }: CustomSelectProps<T>) => {
   const selectId = useId();
 
   return (
-    <FormControl>
+    <FormControl disabled={disabled}>
       <InputLabel id={`${selectId}-label`}>{label}</InputLabel>
       <Select
         labelId={`${selectId}-label`}
@@ -34,6 +36,7 @@ export const CustomSelect = <T extends string>({
         value={value}
         label={label}
         onChange={onChange}
+        disabled={disabled}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

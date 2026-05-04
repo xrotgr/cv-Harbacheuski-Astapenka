@@ -83,6 +83,31 @@
     "dark": "Dark",
     "deviceSettings": "Device settings"
   },
+  "Skills": {
+    "pageTitle": "Skills",
+    "addSkill": "ADD SKILL",
+    "removeSkills": "REMOVE SKILLS",
+    "addSkillTitle": "Add skill",
+    "skill": "Skill",
+    "skillMastery": "Skill mastery",
+    "cancel": "CANCEL",
+    "confirm": "CONFIRM",
+    "noSkillsFound": "No skills found",
+    "noUnassignedSkills": "All skills are already on your profile",
+    "loadingProfileSkills": "Loading your profile skills…",
+    "otherSkills": "Other",
+    "deleteSelectedSkills": "DELETE SELECTED ({count})",
+    "exitSkillSelection": "CANCEL",
+    "selectSkillForRemoval": "Select {name} for removal",
+    "errorWithMessage": "Error: {message}",
+    "mastery": {
+      "Novice": "Novice",
+      "Advanced": "Advanced",
+      "Competent": "Competent",
+      "Proficient": "Proficient",
+      "Expert": "Expert"
+    }
+  },
   "CvTabs": {
     "details": "Details",
     "skills": "Skills",

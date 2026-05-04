@@ -83,6 +83,31 @@
     "dark": "Тёмный",
     "deviceSettings": "Настройки устройства"
   },
+  "Skills": {
+    "pageTitle": "Навыки",
+    "addSkill": "ДОБАВИТЬ НАВЫК",
+    "removeSkills": "УДАЛИТЬ НАВЫКИ",
+    "addSkillTitle": "Добавить навык",
+    "skill": "Навык",
+    "skillMastery": "Уровень навыка",
+    "cancel": "ОТМЕНА",
+    "confirm": "ПОДТВЕРДИТЬ",
+    "noSkillsFound": "Навыки не найдены",
+    "noUnassignedSkills": "Все навыки уже добавлены в профиль",
+    "loadingProfileSkills": "Загрузка навыков профиля…",
+    "otherSkills": "Прочее",
+    "deleteSelectedSkills": "УДАЛИТЬ ВЫБРАННЫЕ ({count})",
+    "exitSkillSelection": "ОТМЕНА",
+    "selectSkillForRemoval": "Выбрать {name} для удаления",
+    "errorWithMessage": "Ошибка: {message}",
+    "mastery": {
+      "Novice": "Начальный",
+      "Advanced": "Продвинутый",
+      "Competent": "Уверенный",
+      "Proficient": "Профессиональный",
+      "Expert": "Эксперт"
+    }
+  },
   "CvTabs": {
     "details": "Подробости",
     "skills": "Навыки",
