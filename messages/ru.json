@@ -31,9 +31,13 @@
     "logout": "Выйти"
   },
   "common": {
+    "confirm": "Подтвердить",
     "cancel": "ОТМЕНА",
+    "create": "Создать",
     "update": "ОБНОВИТЬ",
-    "search": "Поиск"
+    "delete": "Удалить",
+    "search": "Поиск",
+    "cv": "Резюме"
   },
   "profile": {
     "avatar": {
@@ -67,10 +71,29 @@
     "end_date": "Дата окончания",
     "tillNow": "По настоящее время"
   },
+  "CvsTable": {
+    "name": "Имя",
+    "education": "Образование",
+    "employee": "Сотрудник",
+    "description": "Описание"
+  },
   "Settings": {
     "appearance": "Внешний вид",
     "light": "Светлый",
     "dark": "Тёмный",
     "deviceSettings": "Настройки устройства"
+  },
+  "CvTabs": {
+    "details": "Подробости",
+    "skills": "Навыки",
+    "projects": "Проекты",
+    "preview": "Просмотр"
+  },
+  "MenuItems": {
+    "details": "Подробнее",
+    "delete": "Удалить"
+  },
+  "DeleteCvDialog": {
+    "assuranceMessage": "Вы уверены, что хотите удалить резюме "
   }
 }

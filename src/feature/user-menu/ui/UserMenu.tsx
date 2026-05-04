@@ -20,12 +20,11 @@ import { useState } from 'react';
 
 import { GET_PROFILE } from '@/feature/profile';
 import { Link } from '@/i18n/navigation';
+import { useUser } from '@/UserProvider/UserContext';
 
 import { styles } from './UserMenu.styles';
 
 interface UserMenuProps {
-  email: string;
-  userId: string;
   open: boolean;
 }
 
@@ -38,18 +37,20 @@ interface UserMenuProfileData {
   };
 }
 
-export const UserMenu = ({ email, userId, open }: UserMenuProps) => {
+export const UserMenu = ({ open }: UserMenuProps) => {
   const t = useTranslations('sidebar');
+  const user = useUser();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
-  const profileHref = `/users/${userId}/profile`;
+  const profileHref = `/users/${user.id}/profile`;
   const { data } = useQuery<UserMenuProfileData>(GET_PROFILE, {
-    variables: { userId },
-    skip: !userId,
+    variables: { userId: user.id },
+    skip: !user.id,
   });
   const fullName = data?.user?.profile?.full_name?.trim();
   const avatarUrl = data?.user?.profile?.avatar;
-  const userLabel = fullName || email;
+  const userLabel = fullName || user.email;
   const avatarFallback = (userLabel?.[0] ?? 'U').toUpperCase();
 
   const openMenu = (e: React.MouseEvent<HTMLElement>) => {

@@ -31,9 +31,13 @@
     "logout": "Logout"
   },
   "common": {
+    "confirm": "Confirm",
     "cancel": "CANCEL",
+    "create": "Create",
     "update": "UPDATE",
-    "search": "Search"
+    "delete": "Delete",
+    "search": "Search",
+    "cv": "CV"
   },
   "profile": {
     "avatar": {
@@ -67,10 +71,28 @@
     "end_date": "End date",
     "tillNow": "Till now"
   },
+  "CvsTable": {
+    "name": "Name",
+    "education": "Education",
+    "employee": "Employee",
+    "description": "Description"
+  },
   "Settings": {
     "appearance": "Appearance",
     "light": "Light",
     "dark": "Dark",
     "deviceSettings": "Device settings"
+  },
+  "CvTabs": {
+    "details": "Details",
+    "skills": "Skills",
+    "projects": "Projects",
+    "preview": "Preview"
+  },
+  "MenuItems": {
+    "details": "Details"
+  },
+  "DeleteCvDialog": {
+    "assuranceMessage": "Are you sure you want to delete CV"
   }
 }
