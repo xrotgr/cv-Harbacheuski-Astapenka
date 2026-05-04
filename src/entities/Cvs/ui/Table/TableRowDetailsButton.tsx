@@ -2,6 +2,7 @@
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton, Menu, MenuItem } from '@mui/material';
+import { useTranslations } from 'next-intl';
 import { useId, useState } from 'react';
 
 import { Link } from '@/i18n/navigation';
@@ -9,6 +10,8 @@ import { Link } from '@/i18n/navigation';
 import { DeleteCvDialog } from '../DeleteCvDialog/DeleteCvDialog';
 
 export const TableRowDetailsButton = ({ rowId, rowName }: { rowId: string; rowName: string }) => {
+  const t = useTranslations('MenuItems');
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -45,7 +48,7 @@ export const TableRowDetailsButton = ({ rowId, rowName }: { rowId: string; rowNa
         }}
       >
         <MenuItem component={Link} href={`/cvs/${rowId}/details`} onClick={handleClose}>
-          Details
+          {t('details')}
         </MenuItem>
         <DeleteCvDialog cvId={rowId} cvName={rowName} />
       </Menu>

@@ -8,12 +8,16 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { DELETE_CV } from '../../api/deleteCv';
 import { GET_USER_CVS } from '../../api/getUserCvs';
 
 export const DeleteCvDialog = ({ cvId, cvName }: { cvId: string; cvName: string }) => {
+  const t = useTranslations('common');
+  const c = useTranslations('DeleteCvDialog');
+
   const [open, setOpen] = useState(false);
   const [deleteCv] = useMutation(DELETE_CV, { refetchQueries: [GET_USER_CVS] });
 
@@ -32,7 +36,7 @@ export const DeleteCvDialog = ({ cvId, cvName }: { cvId: string; cvName: string 
 
   return (
     <>
-      <MenuItem onClick={handleClickOpen}>Delete</MenuItem>
+      <MenuItem onClick={handleClickOpen}>{t('delete')}</MenuItem>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -40,17 +44,19 @@ export const DeleteCvDialog = ({ cvId, cvName }: { cvId: string; cvName: string 
         aria-describedby="alert-dialog-description"
         role="alertdialog"
       >
-        <DialogTitle id="alert-dialog-title">Delete CV</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {t('delete') + ' ' + t('cv').toLowerCase()}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {`Are you sure you want to delete CV ${cvName}?`}
+            {`${c('assuranceMessage')} ${cvName}?`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} autoFocus>
-            CANCEL
+            {t('cancel')}
           </Button>
-          <Button onClick={handleConfirm}>CONFIRM</Button>
+          <Button onClick={handleConfirm}>{t('confirm')}</Button>
         </DialogActions>
       </Dialog>
     </>

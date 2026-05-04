@@ -1,10 +1,10 @@
-export const cvTabsConfig = (id: string) => {
+export const cvTabsConfig = (id: string, t: (key: string) => string) => {
   const basePath = `/cvs/${id}`;
 
   return [
-    { label: 'Details', value: `${basePath}/details` },
-    { label: 'Skills', value: `${basePath}/skills` },
-    { label: 'Projects', value: `${basePath}/projects` },
-    { label: 'Preview', value: `${basePath}/preview` },
+    { label: t('details'), value: `${basePath}/details` },
+    { label: t('skills'), value: `${basePath}/skills` },
+    { label: t('projects'), value: `${basePath}/projects` },
+    { label: t('preview'), value: `${basePath}/preview` },
   ];
 };
