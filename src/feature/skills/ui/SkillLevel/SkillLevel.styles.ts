@@ -1,6 +1,7 @@
 export const styles = {
   container: {
-    width: 280,
+    width: '100%',
+    maxWidth: 280,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',

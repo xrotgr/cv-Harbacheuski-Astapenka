@@ -57,6 +57,7 @@
     "cancel": "ОТМЕНА",
     "confirm": "ПОДТВЕРДИТЬ",
     "noSkillsFound": "Навыки не найдены",
+    "otherSkills": "Прочее",
     "errorWithMessage": "Ошибка: {message}",
     "mastery": {
       "Novice": "Начальный",

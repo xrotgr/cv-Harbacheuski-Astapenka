@@ -57,6 +57,7 @@
     "cancel": "CANCEL",
     "confirm": "CONFIRM",
     "noSkillsFound": "No skills found",
+    "otherSkills": "Other",
     "errorWithMessage": "Error: {message}",
     "mastery": {
       "Novice": "Novice",

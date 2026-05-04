@@ -1,6 +1,7 @@
 import { Skill, SkillCategory } from 'cv-graphql';
 
 import { groupItemsByCategoryId } from './groupItemsByCategoryId';
+import { sortSkillCategoriesByOrder } from './sortSkillCategoriesByOrder';
 
 export type SkillsCatalogData = {
   skills: Skill[];
@@ -17,7 +18,7 @@ export const buildGroupedSkillsCatalog = (
     };
   }
 
-  const sortedCategories = [...data.skillCategories].sort((a, b) => a.order - b.order);
+  const sortedCategories = sortSkillCategoriesByOrder(data.skillCategories);
   const groupedByCategoryId = groupItemsByCategoryId(
     data.skills,
     (skill) => skill.category?.id ?? '',
