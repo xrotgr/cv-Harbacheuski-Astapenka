@@ -1,0 +1,125 @@
+{
+  "HomePage": {
+    "title": "Здарова, мир!"
+  },
+  "auth": {
+    "login": "ВОЙТИ",
+    "signup": "РЕГИСТРАЦИЯ",
+    "welcomeBack": "С возвращением",
+    "loginSubtitle": "С возвращением! Войдите, чтобы продолжить",
+    "registerNow": "Зарегистрируемся сейчас",
+    "registerSubtitle": "Добро подаловать! Зарегистрируйтесь для продолжения",
+    "forgotSubtitle": "Мы вышлем вам электронное письмо с дальнейшими инструкциями",
+    "forgotPassword": "Забыли пароль",
+    "haveAccount": "У МЕНЯ ЕСТЬ АККАУНТ",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "showPassword": "Показать пароль",
+    "hidePassword": "Скрыть пароль",
+    "authorizationFailed": "Ошибка авторизации. Проверьте email и пароль.",
+    "userExist": "Пользователь существует",
+    "languageLabel": "Язык",
+    "openSettings": "Открыть настройки авторизации"
+  },
+  "sidebar": {
+    "employees": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cv": "Резюме",
+    "profile": "Профиль",
+    "settings": "Настройки",
+    "logout": "Выйти",
+    "projects": "Проекты"
+  },
+  "common": {
+    "confirm": "Подтвердить",
+    "cancel": "ОТМЕНА",
+    "create": "Создать",
+    "update": "ОБНОВИТЬ",
+    "delete": "Удалить",
+    "search": "Поиск",
+    "cv": "Резюме"
+  },
+  "profile": {
+    "avatar": {
+      "uploadButton": "Загрузить аватар",
+      "uploadHint": "png, jpg или gif не больше 0.5MB",
+      "errors": {
+        "unsupportedFormat": "Разрешены только png, jpg, gif",
+        "fileTooLarge": "Размер файла должен быть <= 0.5MB",
+        "uploadFailed": "Не удалось загрузить аватар",
+        "deleteFailed": "Не удалось удалить аватар"
+      }
+    }
+  },
+  "TableNoResults": {
+    "noResultsFound": "Результатов не найдено",
+    "hint": "Попробуйте другой поиск, проверьте написание или используйте более общий запрос",
+    "resetSearch": "Сбросить поиск"
+  },
+  "UsersTable": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Почта",
+    "department": "Отдел",
+    "position": "Должность"
+  },
+  "ProjectsTable": {
+    "name": "Имя",
+    "internal_name": "Внутреннее имя",
+    "domain": "Домен",
+    "start_date": "Дата начала",
+    "end_date": "Дата окончания",
+    "tillNow": "По настоящее время"
+  },
+  "CvsTable": {
+    "name": "Имя",
+    "education": "Образование",
+    "employee": "Сотрудник",
+    "description": "Описание"
+  },
+  "Settings": {
+    "appearance": "Внешний вид",
+    "light": "Светлый",
+    "dark": "Тёмный",
+    "deviceSettings": "Настройки устройства"
+  },
+  "Skills": {
+    "pageTitle": "Навыки",
+    "addSkill": "ДОБАВИТЬ НАВЫК",
+    "removeSkills": "УДАЛИТЬ НАВЫКИ",
+    "addSkillTitle": "Добавить навык",
+    "skill": "Навык",
+    "skillMastery": "Уровень навыка",
+    "cancel": "ОТМЕНА",
+    "confirm": "ПОДТВЕРДИТЬ",
+    "noSkillsFound": "Навыки не найдены",
+    "noUnassignedSkills": "Все навыки уже добавлены в профиль",
+    "loadingProfileSkills": "Загрузка навыков профиля…",
+    "otherSkills": "Прочее",
+    "deleteSelectedSkills": "УДАЛИТЬ ВЫБРАННЫЕ ({count})",
+    "exitSkillSelection": "ОТМЕНА",
+    "selectSkillForRemoval": "Выбрать {name} для удаления",
+    "errorWithMessage": "Ошибка: {message}",
+    "mastery": {
+      "Novice": "Начальный",
+      "Advanced": "Продвинутый",
+      "Competent": "Уверенный",
+      "Proficient": "Профессиональный",
+      "Expert": "Эксперт"
+    }
+  },
+  "CvTabs": {
+    "details": "Подробости",
+    "skills": "Навыки",
+    "projects": "Проекты",
+    "preview": "Просмотр"
+  },
+  "MenuItems": {
+    "details": "Подробнее",
+    "delete": "Удалить"
+  },
+  "DeleteCvDialog": {
+    "assuranceMessage": "Вы уверены, что хотите удалить резюме "
+  }
+}

@@ -1,8 +1,8 @@
-import nextJest from 'next/jest.js'
+import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
   dir: './',
-})
+});
 
 const config = {
   clearMocks: true,
@@ -12,6 +12,6 @@ const config = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-}
+};
 
-export default createJestConfig(config)
+export default createJestConfig(config);

@@ -1,0 +1,124 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "auth": {
+    "login": "LOG IN",
+    "signup": "SIGN UP",
+    "welcomeBack": "Welcome back",
+    "registerNow": "Register now",
+    "registerSubtitle": "Welcome! Sign up to continue",
+    "loginSubtitle": "Hello again! Log in to continue",
+    "forgotSubtitle": "We will sent you an email with further instructions",
+    "forgotPassword": "Forgot password",
+    "haveAccount": "I HAVE AN ACCOUNT",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "authorizationFailed": "Authorization failed. Check your email and password.",
+    "userExist": "The user exists",
+    "languageLabel": "Language",
+    "openSettings": "Open auth settings"
+  },
+  "sidebar": {
+    "employees": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cv": "CVs",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "projects": "Projects"
+  },
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "CANCEL",
+    "create": "Create",
+    "update": "UPDATE",
+    "delete": "Delete",
+    "search": "Search",
+    "cv": "CV"
+  },
+  "profile": {
+    "avatar": {
+      "uploadButton": "Upload avatar image",
+      "uploadHint": "png, jpg or gif no more than 0.5MB",
+      "errors": {
+        "unsupportedFormat": "Only png, jpg, gif are allowed",
+        "fileTooLarge": "File size must be <= 0.5MB",
+        "uploadFailed": "Failed to upload avatar",
+        "deleteFailed": "Failed to delete avatar"
+      }
+    }
+  },
+  "TableNoResults": {
+    "noResultsFound": "No results found",
+    "hint": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
+  },
+  "UsersTable": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position"
+  },
+  "ProjectsTable": {
+    "name": "Name",
+    "internal_name": "Internal name",
+    "domain": "Domain",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "tillNow": "Till now"
+  },
+  "CvsTable": {
+    "name": "Name",
+    "education": "Education",
+    "employee": "Employee",
+    "description": "Description"
+  },
+  "Settings": {
+    "appearance": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "deviceSettings": "Device settings"
+  },
+  "Skills": {
+    "pageTitle": "Skills",
+    "addSkill": "ADD SKILL",
+    "removeSkills": "REMOVE SKILLS",
+    "addSkillTitle": "Add skill",
+    "skill": "Skill",
+    "skillMastery": "Skill mastery",
+    "cancel": "CANCEL",
+    "confirm": "CONFIRM",
+    "noSkillsFound": "No skills found",
+    "noUnassignedSkills": "All skills are already on your profile",
+    "loadingProfileSkills": "Loading your profile skills…",
+    "otherSkills": "Other",
+    "deleteSelectedSkills": "DELETE SELECTED ({count})",
+    "exitSkillSelection": "CANCEL",
+    "selectSkillForRemoval": "Select {name} for removal",
+    "errorWithMessage": "Error: {message}",
+    "mastery": {
+      "Novice": "Novice",
+      "Advanced": "Advanced",
+      "Competent": "Competent",
+      "Proficient": "Proficient",
+      "Expert": "Expert"
+    }
+  },
+  "CvTabs": {
+    "details": "Details",
+    "skills": "Skills",
+    "projects": "Projects",
+    "preview": "Preview"
+  },
+  "MenuItems": {
+    "details": "Details"
+  },
+  "DeleteCvDialog": {
+    "assuranceMessage": "Are you sure you want to delete CV"
+  }
+}

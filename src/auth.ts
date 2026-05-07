@@ -1,64 +1,34 @@
+import { AuthInput } from 'cv-graphql';
 import NextAuth from 'next-auth';
+import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
-type GraphQLLoginResponse = {
-  data?: {
-    login?: {
-      accessToken?: string;
-      user?: {
-        id: string;
-        email?: string;
-        name?: string;
-      };
-    };
-  };
-  errors?: Array<{ message: string }>;
-};
+import { loginWithCredentials } from '@/feature/auth/api/serverAuth';
+import { ACCESS_TOKEN_TTL_MS, refreshAccessToken } from '@/feature/auth/model/token';
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   providers: [
     Credentials({
       name: 'GraphQL',
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        auth: { label: 'Auth', type: 'text' },
       },
       async authorize(credentials) {
-        const graphqlEndpoint = process.env.GRAPHQL_ENDPOINT;
-        if (!graphqlEndpoint || !credentials?.email || !credentials?.password) {
+        const authPayload = credentials?.auth;
+
+        if (!authPayload) {
           return null;
         }
 
-        const response = await fetch(graphqlEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            query: `
-              mutation Login($email: String!, $password: String!) {
-                login(email: $email, password: $password) {
-                  accessToken
-                  user {
-                    id
-                    email
-                    name
-                  }
-                }
-              }
-            `,
-            variables: {
-              email: credentials.email,
-              password: credentials.password,
-            },
-          }),
-        });
-
-        if (!response.ok) {
+        let auth: AuthInput;
+        try {
+          auth = JSON.parse(authPayload) as AuthInput;
+        } catch {
           return null;
         }
 
-        const result = (await response.json()) as GraphQLLoginResponse;
-        const loginResult = result.data?.login;
+        const loginResult = await loginWithCredentials(auth);
         if (!loginResult?.user) {
           return null;
         }
@@ -66,8 +36,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return {
           id: loginResult.user.id,
           email: loginResult.user.email,
-          name: loginResult.user.name,
-          accessToken: loginResult.accessToken,
+          accessToken: loginResult.access_token,
+          refreshToken: loginResult.refresh_token,
         };
       },
     }),
@@ -76,13 +46,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, user }) {
       if (user && 'accessToken' in user) {
         token.accessToken = user.accessToken as string | undefined;
+        token.refreshToken = (
+          'refreshToken' in user ? (user.refreshToken as string | undefined) : undefined
+        ) as string | undefined;
+        token.accessTokenExpires = Date.now() + ACCESS_TOKEN_TTL_MS;
+        token.error = undefined;
       }
 
-      return token;
+      if (token.accessToken && token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
+        return token;
+      }
+
+      return refreshAccessToken(token);
     },
     async session({ session, token }) {
+      session.user = {
+        ...session.user,
+        id: token.sub ?? '',
+      };
       session.accessToken = token.accessToken as string | undefined;
+      session.error = token.error as string | undefined;
       return session;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);

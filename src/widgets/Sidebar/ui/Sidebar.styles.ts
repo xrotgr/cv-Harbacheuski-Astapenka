@@ -1,0 +1,71 @@
+import { COLLAPSED_WIDTH, DRAWER_WIDTH } from '@/shared/model/constants';
+
+export const styles = {
+  wrapper: (open: boolean) => ({
+    width: { xs: '100%', md: open ? DRAWER_WIDTH : COLLAPSED_WIDTH },
+    flexShrink: { xs: 1, md: 0 },
+    transition: 'width 0.3s',
+    overflow: { xs: 'visible', sm: 'hidden' },
+    height: { xs: 'auto', md: '100vh' },
+    display: 'flex',
+    flexDirection: { xs: 'row', md: 'column' },
+    bgcolor: 'background.default',
+    position: { xs: 'fixed', md: 'static' },
+    top: { xs: 'auto', md: 'auto' },
+    left: { xs: 0, md: 'auto' },
+    right: { xs: 0, md: 'auto' },
+    bottom: { xs: 0, md: 'auto' },
+    zIndex: 1200,
+    fontSize: '16px',
+  }),
+  list: {
+    display: 'flex',
+    flexDirection: { xs: 'row', md: 'column' },
+    justifyContent: { xs: 'space-between', md: 'flex-start' },
+    alignItems: { xs: 'center', md: 'flex-start' },
+    width: '100%',
+    px: { xs: 0, md: 0 },
+    py: { xs: 0.3, md: 1 },
+    mt: { xs: 0, md: '44px' },
+  },
+  mobileUserButton: {
+    flex: 1,
+    minWidth: 0,
+    minHeight: 56,
+    borderRadius: 0,
+    px: 1,
+    justifyContent: 'center',
+  },
+  mobileUserAvatar: {
+    width: 30,
+    height: 30,
+  },
+  footer: {
+    mt: { xs: 0, md: 'auto' },
+    p: { xs: 0.5, md: 1 },
+    display: 'block',
+    position: { xs: 'absolute', sm: 'static' },
+    bottom: { xs: 'calc(100% + 6px)', sm: 'auto' },
+    left: { xs: 8, sm: 'auto' },
+    right: { xs: 'auto', sm: 'auto' },
+    transform: { xs: 'none', sm: 'none' },
+    zIndex: 1300,
+  },
+  footerUser: {
+    display: 'flex',
+    flexDirection: { xs: 'row', sm: 'row' },
+    alignItems: 'center',
+    justifyContent: { xs: 'center', md: 'flex-start' },
+    mb: { xs: 0.5, md: 1 },
+  },
+  footerAvatar: {
+    mr: 1,
+  },
+  toggleButton: {
+    borderRadius: 2,
+    display: { xs: 'none', md: 'block' },
+  },
+  avatarTypography: {
+    display: { xs: 'none', sm: 'block' },
+  },
+};
