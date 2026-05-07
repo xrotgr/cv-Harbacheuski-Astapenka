@@ -25,7 +25,6 @@ export const TableWrapper = ({ searchValue, handleInputReset }: TableWrapperProp
   const employee = user.name ?? user.email ?? 'email';
 
   const { data } = useSuspenseQuery(GET_USER_CVS, { variables: { userId: user.id } });
-  console.log(data);
 
   const columns = useMemo(() => getTableColumns(t), [t]);
 

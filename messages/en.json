@@ -28,7 +28,8 @@
     "cv": "CVs",
     "profile": "Profile",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "projects": "Projects"
   },
   "common": {
     "confirm": "Confirm",

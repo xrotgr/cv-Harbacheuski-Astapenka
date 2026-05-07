@@ -3,7 +3,6 @@ import { SxProps, Theme } from '@mui/material';
 export const styles: Record<string, SxProps<Theme>> = {
   root: {
     color: 'text.secondary',
-    padding: '16px 20px 4px 20px',
     width: '100%',
   },
 

@@ -28,9 +28,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     borderRadius: '2rem',
     padding: theme.spacing(1, 1, 1, 0),
-    boxShadow: `0 0 0 1px ${theme.palette.secondary.main}`,
+    boxShadow: `0 0 0 1px grey`,
     '&:hover': {
-      boxShadow: `0 0 0 1px black`,
+      boxShadow: `0 0 0 1px white`,
     },
     '&:focus': {
       boxShadow: `0 0 0 1px ${theme.palette.primary.main}`,

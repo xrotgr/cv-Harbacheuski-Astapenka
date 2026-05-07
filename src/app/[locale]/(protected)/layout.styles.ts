@@ -6,5 +6,6 @@ export const styles = {
   content: {
     flex: 1,
     ml: 2,
+    mt: 2,
   },
 };

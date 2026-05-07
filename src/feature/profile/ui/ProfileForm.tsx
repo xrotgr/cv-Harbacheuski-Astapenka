@@ -38,6 +38,7 @@ type ProfileOptionsData = {
 
 export const ProfileForm = ({ userId, canEdit }: ProfileFormProps) => {
   const t = useTranslations('common');
+  const c = useTranslations('UsersTable');
   const {
     data: profileData,
     loading: loadingProfile,
@@ -122,13 +123,17 @@ export const ProfileForm = ({ userId, canEdit }: ProfileFormProps) => {
         <Box sx={styles.formTextFieldBox}>
           <FormTextField<ProfileFormValues>
             name="firstName"
-            label="First Name"
+            label={c('firstName')}
             disabled={!canEdit}
           />
-          <FormTextField<ProfileFormValues> name="lastName" label="Last Name" disabled={!canEdit} />
+          <FormTextField<ProfileFormValues>
+            name="lastName"
+            label={c('lastName')}
+            disabled={!canEdit}
+          />
           <FormSelect
             name="department"
-            label="Department"
+            label={c('department')}
             options={departments.map((item) => ({
               label: item.name,
               value: item.id,
@@ -138,7 +143,7 @@ export const ProfileForm = ({ userId, canEdit }: ProfileFormProps) => {
 
           <FormSelect
             name="position"
-            label="Position"
+            label={c('position')}
             options={positions.map((item) => ({
               label: item.name,
               value: item.id,

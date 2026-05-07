@@ -1,11 +1,15 @@
-import { ThemeSelect } from '@/feature/theme/ui/ThemeSelect';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
 
-export default function Home() {
-  return (
-    <div>
-      <main>
-        <ThemeSelect />
-      </main>
-    </div>
-  );
+import { authOptions } from '@/auth';
+
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect('/auth/login');
+  } else {
+    redirect('/users');
+  }
+  return <main></main>;
 }

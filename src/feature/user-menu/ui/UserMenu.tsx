@@ -18,7 +18,7 @@ import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { GET_PROFILE } from '@/feature/profile';
+import { GET_PROFILE } from '@/feature/profile/api';
 import { Link } from '@/i18n/navigation';
 import { useUser } from '@/UserProvider/UserContext';
 

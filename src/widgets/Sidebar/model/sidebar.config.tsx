@@ -1,6 +1,7 @@
 import DescriptionIcon from '@mui/icons-material/Description';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 import PeopleIcon from '@mui/icons-material/People';
-import TranslateIcon from '@mui/icons-material/Translate';
+// import TranslateIcon from '@mui/icons-material/Translate';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 export type SidebarLabelKey =
@@ -10,7 +11,8 @@ export type SidebarLabelKey =
   | 'cv'
   | 'profile'
   | 'settings'
-  | 'logout';
+  | 'logout'
+  | 'projects';
 
 export interface SidebarItemConfig {
   labelKey: SidebarLabelKey;
@@ -21,6 +23,7 @@ export interface SidebarItemConfig {
 export const sidebarItems: SidebarItemConfig[] = [
   { labelKey: 'employees', icon: <PeopleIcon />, path: '/users' },
   { labelKey: 'skills', icon: <TrendingUpIcon />, path: '/skills' },
-  { labelKey: 'languages', icon: <TranslateIcon />, path: '/languages' },
+  // { labelKey: 'languages', icon: <TranslateIcon />, path: '/languages' },
   { labelKey: 'cv', icon: <DescriptionIcon />, path: '/cvs' },
+  { labelKey: 'projects', icon: <FactCheckIcon />, path: '/projects' },
 ];

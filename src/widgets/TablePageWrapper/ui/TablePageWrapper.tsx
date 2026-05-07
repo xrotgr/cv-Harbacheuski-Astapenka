@@ -1,5 +1,6 @@
 'use client';
 import { Box, Typography } from '@mui/material';
+import { useTranslations } from 'next-intl';
 import { Suspense, useState } from 'react';
 
 import { CreateCvButton } from '@/entities/Cvs/ui/CreateCvFormDialog/CreateCvFormDialog';
@@ -8,6 +9,8 @@ import SearchBar from '@/shared/ui/search/SearchBar';
 import { Spinner } from '@/shared/ui/Spinner/Spinner';
 
 export const TablePageWrapper = () => {
+  const t = useTranslations('sidebar');
+
   const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -19,9 +22,9 @@ export const TablePageWrapper = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <Typography sx={{ color: 'text.secondary' }}>Cvs</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mr: 6 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 16px)' }}>
+      <Typography sx={{ color: 'text.secondary' }}>{t('cv')}</Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mr: 6, flexWrap: 'wrap' }}>
         <SearchBar value={searchValue} onChange={handleInputChange} />
         <CreateCvButton />
       </Box>

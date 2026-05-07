@@ -6,7 +6,7 @@ import { LanguageSelect } from '@/shared/ui';
 export default function Page() {
   return (
     <>
-      <Typography sx={{ color: 'text.secondary' }}>Settings</Typography>
+      <Typography sx={{ color: 'text.secondary', mb: 4 }}>Settings</Typography>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           sx={{

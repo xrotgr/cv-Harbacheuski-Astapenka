@@ -4,6 +4,7 @@ export const styles = {
     fontWeight: 400,
     pt: '10px',
     px: '50px',
+    mb: 2,
   },
   closeButton: {
     position: 'absolute',

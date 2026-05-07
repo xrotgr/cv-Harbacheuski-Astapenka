@@ -1,9 +1,10 @@
 'use client';
 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Breadcrumbs, Typography, Box } from '@mui/material';
-import Link from 'next/link';
+import { Breadcrumbs, Typography, Box, Link } from '@mui/material';
 import { ReactNode } from 'react';
+
+import { Link as i18nLink } from '@/i18n/navigation';
 
 import { styles } from './AppBreadcrumbs.styles';
 
@@ -32,7 +33,18 @@ export function AppBreadcrumbs({ items }: AppBreadcrumbsProps) {
 
         if (item.href) {
           return (
-            <Link key={index} href={item.href} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link
+              component={i18nLink}
+              key={index}
+              href={item.href}
+              sx={{
+                textDecoration: 'none',
+                color: 'inherit',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              }}
+            >
               {content}
             </Link>
           );

@@ -28,7 +28,8 @@
     "cv": "Резюме",
     "profile": "Профиль",
     "settings": "Настройки",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "projects": "Проекты"
   },
   "common": {
     "confirm": "Подтвердить",
